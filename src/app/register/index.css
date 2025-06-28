@@ -37,7 +37,7 @@ html {
 }
 
 .login-card-inner {
-  margin: 0;
+  margin: 5rem 0 0 0;
   padding: 0.75rem 1rem;
 }
 
@@ -65,10 +65,8 @@ html {
 
 .logincard {
   background: rgba(255, 255, 255, 0.06);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15),
     inset 0 -1px 0 rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
@@ -144,7 +142,7 @@ html {
 
 .or-text {
   margin: 0;
-  padding: 0 1.5rem; 
+  padding: 0 1.5rem;
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
   font-size: 0.8rem;
@@ -334,7 +332,7 @@ html {
 /* Create Account Container */
 .create-account-container {
   margin: 0;
-  padding: 1.25rem 0 0 ;
+  padding: 1.25rem 0 0;
 }
 
 .create-account-container span {
@@ -359,7 +357,7 @@ html {
 }
 
 .create-account-container a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -372,5 +370,3 @@ html {
 .create-account-container a:hover::after {
   width: 100%;
 }
-
-
