@@ -14,29 +14,41 @@
 /* specific margins and paddings for login components */
 .login-container {
   margin: 0;
-  padding: 1rem; /* Reduziert von 3rem */
+  padding: 0.5rem;
+  min-height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
 .login-card-wrapper {
   margin: 0 auto;
   padding: 0;
+  max-height: none;
+  overflow-y: visible;
+  max-width: 360px;
 }
 
 .login-card-inner {
   margin: 0;
-  padding: 2rem 2.5rem; /* Reduziert von 5rem 4rem */
+  padding: 0.75rem 1rem;
 }
 
 .login-header {
-  margin: 0 0 1.5rem 0; /* Reduziert von 4rem */
+  margin: 0 0 0.5rem 0;
   padding: 0;
+  text-align: center;
 }
 
 .login-title {
-  margin: 0 0 0.5rem 0; /* Reduziert von 1.5rem */
+  margin: 0 0 0.25rem 0;
   padding: 0;
   color: rgba(255, 255, 255, 1);
   font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .login-subtitle {
@@ -44,6 +56,7 @@
   padding: 0;
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
+  font-size: 0.8rem;
 }
 
 .logincard {
@@ -115,7 +128,7 @@
 
 /* Social Buttons */
 .social-buttons-container {
-  margin: 0 0 1.75rem 0; /* Erhöht */
+  margin: 0 0 0.5rem 0;
   padding: 0;
 }
 
@@ -126,8 +139,10 @@
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
   transition: all 0.4s ease;
-  cursor: pointer;  margin: 0 0 0.75rem 0; /* Erhöht von 0.5rem */
-  padding: 0.875rem 1.25rem; /* Erhöht */
+  cursor: pointer;
+  margin: 0 0 0.4rem 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
 }
 
 .social-btn:hover {
@@ -142,28 +157,30 @@
 }
 
 .or-divider {
-  margin: 0 0 1.75rem 0; /* Erhöht */
+  margin: 0 0 0.5rem 0;
   padding: 0;
 }
 
 .or-text {
   margin: 0;
-  padding: 0 2rem; 
+  padding: 0 1.5rem; 
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
+  font-size: 0.8rem;
 }
 
 /* Input Fields */
 .input-group {
-  margin: 0 0 1.5rem 0; /* Erhöht von 1rem */
+  margin: 0 0 0.4rem 0;
   padding: 0;
 }
 
 .input-label {
-  margin: 0 0 0.25rem 0; /* Reduziert */
+  margin: 0 0 0.2rem 0;
   padding: 0;
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
+  font-size: 0.8rem;
 }
 
 .login-input {
@@ -174,9 +191,9 @@
   font-weight: 500;
   outline: none;
   transition: all 0.3s ease;
-  font-size: inherit;
+  font-size: 0.8rem;
   margin: 0;
-  padding: 0.75rem 1rem; /* Reduziert */
+  padding: 0.5rem 0.75rem;
 }
 
 .login-input::placeholder {
@@ -256,8 +273,9 @@
   cursor: pointer;
   transition: all 0.4s ease;
   font-weight: 600;
-  margin: 0;
-  padding: 0.75rem 1.25rem; /* Reduziert */
+  margin: 1rem 0 0 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
 }
 
 .login-btn:hover {
@@ -279,8 +297,8 @@
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
-  margin: 0 0 2rem 0; /* Erhöht von 1.5rem */
-  padding: 2rem; /* Erhöht von 1.5rem */
+  margin: 0 0 0.5rem 0;
+  padding: 0.75rem;
 }
 
 .content-wrapper::before {
@@ -309,12 +327,13 @@
 /* Create Account Container */
 .create-account-container {
   margin: 0;
-  padding: 1rem 0 0 0;
+  padding: 0.75rem 0 0 0;
 }
 
 .create-account-container span {
   color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
+  font-size: 0.8rem;
 }
 
 .create-account-container a {
@@ -323,6 +342,7 @@
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
+  font-size: 0.8rem;
 }
 
 .create-account-container a:hover {
@@ -348,6 +368,7 @@
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+  font-size: 0.7rem;
 }
 
 .remember-forgot-container a:hover {

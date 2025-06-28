@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal, AlertTriangle, CheckCircle } from "lucide-react";
+import { CheckCircle, AlertTriangle } from "lucide-react";
 import "./index.css";
 import "./mobile.css";
 
@@ -61,10 +60,6 @@ export default function Register() {
 
   const isPasswordValid = () => {
     return Object.values(passwordValidation).every(valid => valid);
-  };
-
-  const getValidationIcon = (isValid) => {
-    return isValid ? <CheckCircle className="w-4 h-4 text-green-400" /> : <AlertTriangle className="w-4 h-4 text-red-400" />;
   };
 
   return (
@@ -184,37 +179,49 @@ export default function Register() {
                   />
                 </div>
 
-                {/* Password Validation Alert */}
+                {/* Password Validation */}
                 {showValidation && (
-                  <div className="password-validation">
-                    <Alert variant={isPasswordValid() ? "default" : "destructive"}>
-                      <Terminal className="h-4 w-4" />
-                      <AlertTitle>Password Requirements</AlertTitle>
-                      <AlertDescription>
-                        <div className="space-y-1 mt-2">
-                          <div className="flex items-center gap-2">
-                            {getValidationIcon(passwordValidation.length)}
-                            <span className="text-sm">At least 8 characters</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {getValidationIcon(passwordValidation.uppercase)}
-                            <span className="text-sm">One uppercase letter</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {getValidationIcon(passwordValidation.lowercase)}
-                            <span className="text-sm">One lowercase letter</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {getValidationIcon(passwordValidation.number)}
-                            <span className="text-sm">One number</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {getValidationIcon(passwordValidation.special)}
-                            <span className="text-sm">One special character</span>
-                          </div>
-                        </div>
-                      </AlertDescription>
-                    </Alert>
+                  <div className="custom-validation-box">
+                    <div className="validation-header">
+                      <span className="validation-title">Password Requirements</span>
+                    </div>
+                    <div className="validation-items">
+                      <div className={`validation-item ${passwordValidation.length ? 'valid' : 'invalid'}`}>
+                        {passwordValidation.length ? 
+                          <CheckCircle className="w-4 h-4" /> : 
+                          <AlertTriangle className="w-4 h-4" />
+                        }
+                        <span>At least 8 characters</span>
+                      </div>
+                      <div className={`validation-item ${passwordValidation.uppercase ? 'valid' : 'invalid'}`}>
+                        {passwordValidation.uppercase ? 
+                          <CheckCircle className="w-4 h-4" /> : 
+                          <AlertTriangle className="w-4 h-4" />
+                        }
+                        <span>One uppercase letter</span>
+                      </div>
+                      <div className={`validation-item ${passwordValidation.lowercase ? 'valid' : 'invalid'}`}>
+                        {passwordValidation.lowercase ? 
+                          <CheckCircle className="w-4 h-4" /> : 
+                          <AlertTriangle className="w-4 h-4" />
+                        }
+                        <span>One lowercase letter</span>
+                      </div>
+                      <div className={`validation-item ${passwordValidation.number ? 'valid' : 'invalid'}`}>
+                        {passwordValidation.number ? 
+                          <CheckCircle className="w-4 h-4" /> : 
+                          <AlertTriangle className="w-4 h-4" />
+                        }
+                        <span>One number</span>
+                      </div>
+                      <div className={`validation-item ${passwordValidation.special ? 'valid' : 'invalid'}`}>
+                        {passwordValidation.special ? 
+                          <CheckCircle className="w-4 h-4" /> : 
+                          <AlertTriangle className="w-4 h-4" />
+                        }
+                        <span>One special character</span>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -235,18 +242,16 @@ export default function Register() {
 
                 {/* Password Match Validation */}
                 {formData.confirmPassword.length > 0 && (
-                  <div className="password-match-validation">
-                    <Alert variant={passwordValidation.match ? "default" : "destructive"}>
-                      <AlertTriangle className="h-4 w-4" />
-                      <AlertDescription>
-                        <div className="flex items-center gap-2">
-                          {getValidationIcon(passwordValidation.match)}
-                          <span className="text-sm">
-                            {passwordValidation.match ? "Passwords match" : "Passwords don't match"}
-                          </span>
-                        </div>
-                      </AlertDescription>
-                    </Alert>
+                  <div className={`custom-validation-box single-item ${passwordValidation.match ? 'valid-box' : 'invalid-box'}`}>
+                    <div className={`validation-item ${passwordValidation.match ? 'valid' : 'invalid'}`}>
+                      {passwordValidation.match ? 
+                        <CheckCircle className="w-4 h-4" /> : 
+                        <AlertTriangle className="w-4 h-4" />
+                      }
+                      <span>
+                        {passwordValidation.match ? "Passwords match" : "Passwords don't match"}
+                      </span>
+                    </div>
                   </div>
                 )}
 
