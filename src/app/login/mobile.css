@@ -1,0 +1,325 @@
+/* Mobile-optimized styles for login form */
+
+@media (max-width: 768px) {
+  /* Mobile Container Adjustments */
+  .login-container {
+    padding: 0.25rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-card-wrapper {
+    width: 100%;
+    max-width: 360px;
+    min-width: 320px;
+    margin: 0 auto;
+  }
+
+  .login-card-inner {
+    padding: 1rem 1rem;
+    margin: 0;
+  }
+
+  /* Mobile Header */
+  .login-header {
+    margin: 0 0 0.75rem 0;
+    text-align: center;
+  }
+
+  .login-title {
+    font-size: 2rem;
+    line-height: 1;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .login-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  /* Mobile Content Wrapper */
+  .content-wrapper {
+    padding: 1rem;
+    margin: 0 0 0.75rem 0;
+    border-radius: 1rem;
+  }
+
+  /* Mobile Social Buttons */
+  .social-buttons-container {
+    margin: 0 0 0.75rem 0;
+  }
+
+  .social-btn {
+    padding: 0.625rem 0.875rem;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+  }
+
+  .social-btn:last-child {
+    margin-bottom: 0;
+  }
+
+  .social-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* Mobile OR Divider */
+  .or-divider {
+    margin: 0.75rem 0;
+  }
+
+  .or-text {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  /* Mobile Input Fields */
+  .input-group {
+    margin: 0 0 0.75rem 0;
+  }
+
+  .input-label {
+    font-size: 0.9rem;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .login-input {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.95rem;
+    border-radius: 0.75rem;
+    min-height: 44px; /* Reduziert von 48px */
+  }
+
+  .login-input::placeholder {
+    font-size: 0.9rem;
+  }
+
+  /* Mobile Remember/Forgot Section */
+  .remember-forgot-container {
+    margin: 0 0 0.875rem 0;
+    flex-direction: row;
+    justify-content: flex-end; /* Rechts ausgerichtet */
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .remember-label span {
+    font-size: 0.85rem;
+  }
+
+  .remember-forgot-container a {
+    font-size: 0.85rem;
+  }
+
+  /* Mobile Sign In Button */
+  .login-btn {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    min-height: 46px; /* Reduziert */
+    margin: 0;
+  }
+
+  .login-btn span {
+    font-size: 1rem;
+  }
+
+  /* Mobile Create Account */
+  .create-account-container {
+    padding: 0.75rem 0 0.25rem 0;
+    margin: 0;
+  }
+
+  .create-account-container span,
+  .create-account-container a {
+    font-size: 0.85rem;
+  }
+
+  /* Mobile Touch Optimizations */
+  .social-btn,
+  .login-btn,
+  .login-input,
+  .custom-checkbox {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Mobile Hover Effects (disable on touch) */
+  @media (hover: none) {
+    .social-btn:hover,
+    .login-btn:hover,
+    .create-account-container a:hover,
+    .remember-forgot-container a:hover {
+      transform: none;
+      box-shadow: none;
+      text-shadow: none;
+    }
+
+    .create-account-container a:hover::after {
+      width: 0;
+    }
+  }
+
+  /* Mobile Focus States */
+  .login-input:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    transform: none;
+  }
+
+  /* Mobile Glassmorphism Adjustments */
+  .logincard {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 1.5rem;
+  }
+
+  .content-wrapper {
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+  }
+
+  /* Mobile Typography Adjustments */
+  .social-btn img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Mobile Custom Checkbox */
+  .custom-checkbox {
+    width: 18px;
+    height: 18px;
+    margin: 0 0.75rem 0 0;
+  }
+
+  /* Mobile Safe Area (for devices with notches) */
+  @supports (padding: max(0px)) {
+    .login-container {
+      padding-left: max(0.5rem, env(safe-area-inset-left));
+      padding-right: max(0.5rem, env(safe-area-inset-right));
+      padding-top: max(0.5rem, env(safe-area-inset-top));
+      padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 360px) {
+  .login-card-wrapper {
+    max-width: 320px;
+    min-width: 300px;
+  }
+
+  .login-card-inner {
+    padding: 0.875rem;
+  }
+
+  .content-wrapper {
+    padding: 0.875rem;
+  }
+
+  .login-title {
+    font-size: 1.75rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .social-btn,
+  .login-input {
+    padding: 0.625rem;
+    font-size: 0.9rem;
+  }
+
+  .login-btn {
+    padding: 0.7rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .input-label {
+    font-size: 0.85rem;
+  }
+
+  .remember-label span,
+  .remember-forgot-container a {
+    font-size: 0.8rem;
+  }
+
+  .create-account-container span,
+  .create-account-container a {
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .login-container {
+    padding: 0.125rem;
+  }
+
+  .login-card-inner {
+    padding: 0.75rem 1rem;
+  }
+
+  .login-header {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .content-wrapper {
+    padding: 0.75rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .input-group {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .social-buttons-container {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .social-btn {
+    padding: 0.5rem 0.75rem;
+    margin: 0 0 0.375rem 0;
+    font-size: 0.85rem;
+  }
+
+  .or-divider {
+    margin: 0.5rem 0;
+  }
+
+  .remember-forgot-container {
+    margin: 0 0 0.75rem 0;
+    flex-direction: row;
+    justify-content: flex-end; /* Rechts ausgerichtet auch im Landscape */
+    gap: 0.25rem;
+  }
+
+  .login-input {
+    padding: 0.625rem;
+    font-size: 0.9rem;
+  }
+
+  .login-btn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .create-account-container {
+    padding: 0.5rem 0 0.125rem 0;
+  }
+}

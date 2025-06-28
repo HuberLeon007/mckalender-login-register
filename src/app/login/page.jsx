@@ -1,6 +1,7 @@
 import React from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import "./index.css";
+import "./mobile.css";
 
 export default function Login({}) {
   const GoogleIcon = "/google.svg";
@@ -84,14 +85,8 @@ export default function Login({}) {
                   />
                 </div>
 
-                {/* Remember me and Forgot Password */}
-                <div className="flex items-center justify-between remember-forgot-container">
-                  <label className="flex items-center remember-label">
-                    <input type="checkbox" className="custom-checkbox" />
-                    <span className="text-lg text-white text-opacity-80">
-                      Remember me
-                    </span>
-                  </label>
+                {/* Forgot Password */}
+                <div className="flex items-center justify-end remember-forgot-container">
                   <a
                     href="#"
                     className="text-lg text-white hover:text-white transition-colors"
@@ -114,7 +109,7 @@ export default function Login({}) {
                   Don't have an account?{" "}
                 </span>
                 <a
-                  href="#"
+                  href="/register"
                   className="text-lg text-white font-semibold hover:text-white transition-colors"
                 >
                   Create New Account
