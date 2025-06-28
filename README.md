@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MCKalender Login & Register Forms
 
-## Getting Started
+Modern glassmorphism-style authentication forms built with Next.js.
 
-First, run the development server:
+## Components
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Login Form** (`/login`) - Sign in with email/password + social login
+- **Register Form** (`/register`) - Sign up with validation + social login
+- **Background Animation** - Animated gradient background component
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Glassmorphism Design** - Transparent blur effects with modern styling
+- **Live Password Validation** - Real-time feedback with custom validation boxes
+- **Social Login** - Google & Facebook integration ready
+- **Responsive Design** - Optimized for all devices
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Responsive Breakpoints
 
-## Learn More
+- **Desktop** (769px+) - Full-size forms, hover effects
+- **Mobile** (768px-) - Compact layout, touch optimizations
+- **Small Mobile** (360px-) - Ultra-compact for small screens
+- **Landscape** - Special handling for mobile landscape mode
 
-To learn more about Next.js, take a look at the following resources:
+## Key Settings
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Form Sizes** - Deliberately small and compact design
+- **No Clipping** - Forms scroll properly without cutting off content
+- **Centered Headers** - All titles and subtitles are centered
+- **Touch Friendly** - Mobile hover effects disabled, optimized tap targets
