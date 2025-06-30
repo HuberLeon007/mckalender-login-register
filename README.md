@@ -1,23 +1,30 @@
-# MCKalender Login & Register Forms
+# MCKalender Login & Register
 
-Modern glassmorphism-style authentication forms built with Next.js.
-
-## Components
-
-- **Login Form** (`/login`) - Sign in with email/password + social login
-- **Register Form** (`/register`) - Sign up with live validation + social login  
-- **Background Animation** - Animated gradient background component
-- **Alert Component** - Custom validation feedback boxes
+Moderne Auth-Forms mit Glassmorphism-Design, Next.js & animiertem Verlauf.
 
 ## Features
+- Login & Register mit Live-Validation
+- Social Login (Google/Facebook, Icons vorbereitet)
+- Animierter Gradient-Hintergrund (auch als Fallback mit subtiler Animation)
+- Responsive & Mobile-optimiert
+- 4K-Support: Layout speziell für große Bildschirme getestet
 
-- **Glassmorphism Design** - Transparent blur effects with modern styling
-- **Live Password Validation** - Real-time feedback with custom glassmorphism validation boxes
-- **Social Login** - Google & Facebook SVG icons ready for integration
-- **Responsive Design** - Optimized for all devices with no clipping issues
-- **Poppins Font** - Modern typography throughout
+## Komponenten
+- **Login-Form**: Anmeldung mit E-Mail/Passwort & Social Login
+- **Register-Form**: Registrierung mit Live-Validierung & Social Login
+- **BackgroundGradientAnimation**: Animierter Farbverlauf, Fallback mit CSS-Animation
+- **Alert**: Glassmorphism-Validierungsboxen
 
-## File Structure
+## Struktur
+- `src/app/login` & `src/app/signup`: Seiten & CSS
+- `src/components/ui/`: Animation, Alerts, UI
+- `public/`: SVG-Icons
+
+## Start
+1. `npm install`
+2. `npm run dev`
+
+Fertig!
 
 ```
 src/
