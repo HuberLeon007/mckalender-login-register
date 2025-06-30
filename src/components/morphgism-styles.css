@@ -1,0 +1,407 @@
+/* Apple-Style Morphgism Design für Aceternity UI Komponenten */
+
+/* Main Card Styling */
+.morphgism-card {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 999;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  margin: 5rem 0;
+  padding: 1.75rem 1rem;
+}
+
+/* Mobile responsive margins */
+@media (max-width: 768px) {
+  .morphgism-card {
+    margin: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .morphgism-card {
+    margin: 1.5rem 1rem;
+    padding: 1.25rem 0.875rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .morphgism-card {
+    margin: 1rem 0.75rem;
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  .morphgism-card {
+    margin: 0.75rem 0.5rem;
+    padding: 0.875rem 0.625rem;
+  }
+  
+  .modern-title {
+    font-size: 1.75rem !important;
+    padding: 8px;
+  }
+  
+  .modern-subtitle {
+    font-size: 0.875rem !important;
+  }
+}
+
+.morphgism-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.morphgism-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.15), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.morphgism-card:hover::before {
+  left: 100%;
+}
+
+/* Title Styling */
+.modern-title {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  padding: 10px;
+}
+
+.modern-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
+}
+
+/* Content Wrapper - Glassmorphism */
+.content-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 0.5rem 0;
+  padding: 0.75rem;
+}
+
+.content-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+.content-wrapper:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Social Buttons */
+.social-buttons-container {
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+}
+
+.social-btn {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  margin: 0 0 0.4rem 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.social-btn:last-child {
+  margin-bottom: 0;
+}
+
+/* OR Divider */
+.or-divider {
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+}
+
+.or-text {
+  margin: 0;
+  padding: 0 1.5rem; 
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Input Fields */
+.input-group {
+  margin: 0 0 0.4rem 0;
+  padding: 0;
+}
+
+.input-label {
+  margin: 0 0 0.2rem 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Name Row */
+.name-row {
+  margin: 0 0 0.4rem 0;
+}
+
+/* Override Aceternity Input Styles to match Apple Morphgism */
+.aceternity-input {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 500 !important;
+  outline: none !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.8rem !important;
+  margin: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  box-shadow: none !important;
+}
+
+.aceternity-input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 400 !important;
+}
+
+.aceternity-input:focus {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Remove Aceternity's motion div background */
+.aceternity-input:focus-within,
+.aceternity-input:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Override the motion div wrapper from Aceternity */
+.aceternity-input:focus-within > .group\/input,
+.aceternity-input:hover > .group\/input {
+  background: transparent !important;
+}
+
+/* Force override Aceternity's motion wrapper styles */
+.aceternity-input .group\/input {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.aceternity-input .group\/input:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.aceternity-input .group\/input:focus-within {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Input inside the motion wrapper */
+.aceternity-input input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.aceternity-input input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.create-account-container a:hover::after {
+  width: 100%;
+}
+
+/* Sign Up/Login Button */
+.login-btn {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-weight: 600;
+  margin: -1rem 0 0 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.login-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Create Account / Sign In Container */
+.create-account-container {
+  margin: 0;
+  padding: 0.75rem 0 0 0;
+}
+
+.create-account-container span {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.create-account-container a {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 0.8rem;
+}
+
+.create-account-container a:hover {
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.create-account-container a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: width 0.3s ease;
+}
+
+.create-account-container a:hover::after {
+  width: 100%;
+}
+
+/* Forgot Password */
+.remember-forgot-container {
+  margin: 0 0 1.75rem 0;
+  padding: 0;
+}
+
+.remember-forgot-container a {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+}
+
+.remember-forgot-container a:hover {
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Password Validation Styles */
+.password-validation {
+  margin: 0.5rem 0;
+}
+
+.validation-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.validation-item {
+  transition: all 0.3s ease;
+  padding: 0.25rem 0;
+}
+
+.validation-item.valid {
+  opacity: 1;
+}
+
+.validation-item.invalid {
+  opacity: 0.8;
+}
+
+.validation-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile responsive for validation */
+@media (max-width: 480px) {
+  .validation-container {
+    padding: 0.625rem;
+  }
+  
+  .validation-item {
+    padding: 0.2rem 0;
+  }
+}
