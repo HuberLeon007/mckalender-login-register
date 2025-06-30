@@ -1,16 +1,33 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import SignupForm from "@/components/signup-form";
 import "./index.css";
 import "./mobile.css";
 
 export default function Register() {
+  const [showAnimation, setShowAnimation] = useState(false);
+  useEffect(() => {
+    if (window.innerWidth <= 1920 && window.innerHeight <= 1080) {
+      setShowAnimation(true);
+    }
+  }, []);
+
   return (
     <div className="relative w-full min-h-screen bg-black">
       {/* Background Animation Container (einmal, mit extra Höhe) */}
       <div className="absolute inset-0 w-full min-h-screen pointer-events-none">
-        <BackgroundGradientAnimation height="calc(100vh + 10rem)" />
+        {showAnimation ? (
+          <BackgroundGradientAnimation height="calc(100vh + 10rem)" />
+        ) : (
+          <div
+            className="w-full h-full"
+            style={{
+              background:
+                "linear-gradient(40deg, rgb(15,23,42), rgb(30,41,59))",
+            }}
+          />
+        )}
       </div>
 
       {/* Register Form Container */}
