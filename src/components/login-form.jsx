@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -11,87 +11,97 @@ import {
 import "./morphgism-styles.css";
 
 export default function LoginForm() {
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login form submitted");
+    setError("Email and password combination is incorrect.");
   };
 
   return (
-    <div className="w-full max-w-lg xl:max-w-xl">
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
       {/* Main Card with Apple Morphgism Style */}
-      <div className="rounded-3xl morphgism-card">
-        <div className="w-full h-auto">
+      <div className="rounded-2xl morphgism-card p-3 flex flex-col">
+        <div className="w-full h-auto flex-1 flex flex-col">
           {/* Header */}
-          <div className="text-center mb-6">
-            <h1 className="text-4xl sm:text-5xl text-white font-bold tracking-tight mb-2 modern-title">
+          <div className="text-center mb-4">
+            <h1 className="text-2xl sm:text-3xl text-white font-bold tracking-tight mb-1 modern-title">
               Sign In
             </h1>
-            <p className="text-lg text-white text-opacity-90 leading-relaxed modern-subtitle">
+            <p className="text-sm text-white text-opacity-90 leading-relaxed modern-subtitle">
               Welcome back, you've been missed.
             </p>
           </div>
 
+          {/* Fehler-Alert */}
+          {error && (
+            <div className="bg-red-500 bg-opacity-80 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">
+              {error}
+            </div>
+          )}
+
           {/* Content Wrapper with Glassmorphism */}
-          <div className="content-wrapper rounded-2xl">
-            <form onSubmit={handleSubmit}>
+          <div className="content-wrapper rounded-xl p-2 flex-1 overflow-y-visible">
+            <form onSubmit={handleSubmit} className="flex flex-col min-h-0">
               {/* Social Login Buttons */}
-              <div className="flex flex-col social-buttons-container">
+              <div className="flex flex-col social-buttons-container gap-2 mb-2">
                 <button 
                   type="button"
-                  className="social-btn flex items-center justify-center gap-4 rounded-xl">
-                  <IconBrandGoogle className="w-5 h-5" />
-                  <span className="text-lg font-medium text-white">
+                  className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
+                  onClick={() => window.location.href = '/api/auth/google'}>
+                  <IconBrandGoogle className="w-4 h-4" />
+                  <span className="font-medium text-white">
                     Google
                   </span>
                 </button>
                 <button 
                   type="button"
-                  className="social-btn flex items-center justify-center gap-4 rounded-xl">
-                  <IconBrandFacebook className="w-5 h-5" />
-                  <span className="text-lg font-medium text-white">
+                  className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
+                  onClick={() => window.location.href = '/api/auth/facebook'}>
+                  <IconBrandFacebook className="w-4 h-4" />
+                  <span className="font-medium text-white">
                     Facebook
                   </span>
                 </button>
               </div>
 
               {/* OR Divider */}
-              <div className="flex items-center or-divider">
+              <div className="flex items-center or-divider mb-2">
                 <div className="flex-1 h-px bg-white bg-opacity-30"></div>
-                <span className="text-lg text-white text-opacity-80 or-text">
+                <span className="text-base text-white text-opacity-80 or-text px-2">
                   OR
                 </span>
                 <div className="flex-1 h-px bg-white bg-opacity-30"></div>
               </div>
 
               {/* Email Input */}
-              <div className="input-group">
-                <Label className="block text-lg text-white text-opacity-90 input-label">
+              <div className="input-group mb-2">
+                <Label className="block text-base text-white text-opacity-90 input-label">
                   Email Address
                 </Label>
                 <Input 
                   type="email" 
                   placeholder="your@email.com"
-                  className="aceternity-input w-full rounded-xl text-lg"
+                  className="aceternity-input w-full rounded-lg text-base"
                 />
               </div>
 
               {/* Password Input */}
-              <div className="input-group">
-                <Label className="block text-lg text-white text-opacity-90 input-label">
+              <div className="input-group mb-2">
+                <Label className="block text-base text-white text-opacity-90 input-label">
                   Password
                 </Label>
                 <Input 
                   type="password" 
                   placeholder="••••••••"
-                  className="aceternity-input w-full rounded-xl text-lg"
+                  className="aceternity-input w-full rounded-lg text-base"
                 />
               </div>
 
               {/* Forgot Password */}
-              <div className="flex items-center justify-end remember-forgot-container">
+              <div className="flex items-center justify-end remember-forgot-container mb-2">
                 <a
                   href="#"
-                  className="text-lg text-white hover:text-white transition-colors"
+                  className="text-sm text-white hover:text-white transition-colors"
                 >
                   Forgot Password?
                 </a>
@@ -100,8 +110,8 @@ export default function LoginForm() {
               {/* Sign In Button */}
               <button 
                 type="submit"
-                className="login-btn w-full rounded-xl">
-                <span className="text-xl font-semibold text-white">
+                className="login-btn w-full rounded-lg py-2">
+                <span className="text-base font-semibold text-white">
                   Sign in →
                 </span>
               </button>
@@ -109,13 +119,13 @@ export default function LoginForm() {
           </div>
 
           {/* Create Account Link */}
-          <div className="text-center create-account-container">
-            <span className="text-lg text-white text-opacity-80">
+          <div className="text-center create-account-container mt-2">
+            <span className="text-base text-white text-opacity-80">
               Don't have an account?{" "}
             </span>
             <a
-              href="/register"
-              className="text-lg text-white font-semibold hover:text-white transition-colors">
+              href="/signup"
+              className="text-base text-white font-semibold hover:text-white transition-colors">
               Create New Account
             </a>
           </div>

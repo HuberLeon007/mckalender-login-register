@@ -17,7 +17,8 @@ export default function SignupForm() {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    accountType: "personal" // "personal" or "commercial"
   });
 
   const [passwordValidation, setPasswordValidation] = useState({
@@ -61,6 +62,13 @@ export default function SignupForm() {
     }
   };
 
+  const toggleAccountType = () => {
+    setFormData(prev => ({
+      ...prev,
+      accountType: prev.accountType === "personal" ? "commercial" : "personal"
+    }));
+  };
+
   const isPasswordValid = () => {
     return Object.values(passwordValidation).every(valid => valid);
   };
@@ -75,56 +83,84 @@ export default function SignupForm() {
   };
   
   return (
-    <div className="w-full max-w-lg xl:max-w-xl">
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
       {/* Main Card with Apple Morphgism Style */}
-      <div className="rounded-3xl morphgism-card">
-        <div className="w-full h-auto">
+      <div className="rounded-2xl morphgism-card p-3 max-h-screen overflow-y-auto flex flex-col">
+        <div className="w-full h-auto flex-1 flex flex-col">
           {/* Header */}
-          <div className="text-center mb-6">
-            <h1 className="text-4xl sm:text-5xl text-white font-bold tracking-tight mb-2 modern-title">
+          <div className="text-center mb-4">
+            <h1 className="text-2xl sm:text-3xl text-white font-bold tracking-tight mb-1 modern-title">
               Sign Up
             </h1>
-            <p className="text-lg text-white text-opacity-90 leading-relaxed modern-subtitle">
-              Join us today and get started with your new account
+            <p className="text-sm text-white text-opacity-90 leading-relaxed modern-subtitle">
+              Join us today and get started
             </p>
           </div>
 
           {/* Content Wrapper with Glassmorphism */}
-          <div className="content-wrapper rounded-2xl">
-            <form onSubmit={handleSubmit}>
+          <div className="content-wrapper rounded-xl p-2 flex-1 overflow-y-visible">
+            <form onSubmit={handleSubmit} className="flex flex-col min-h-0">
               {/* Social Login Buttons */}
-              <div className="flex flex-col social-buttons-container">
+              <div className="flex flex-col social-buttons-container gap-2 mb-2">
                 <button 
                   type="button"
-                  className="social-btn flex items-center justify-center gap-4 rounded-xl">
-                  <IconBrandGoogle className="w-5 h-5" />
-                  <span className="text-lg font-medium text-white">
+                  className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
+                  onClick={() => window.location.href = '/api/auth/google'}>
+                  <IconBrandGoogle className="w-4 h-4" />
+                  <span className="font-medium text-white">
                     Google
                   </span>
                 </button>
                 <button 
                   type="button"
-                  className="social-btn flex items-center justify-center gap-4 rounded-xl">
-                  <IconBrandFacebook className="w-5 h-5" />
-                  <span className="text-lg font-medium text-white">
+                  className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
+                  onClick={() => window.location.href = '/api/auth/facebook'}>
+                  <IconBrandFacebook className="w-4 h-4" />
+                  <span className="font-medium text-white">
                     Facebook
                   </span>
                 </button>
               </div>
 
               {/* OR Divider */}
-              <div className="flex items-center or-divider">
+              <div className="flex items-center or-divider mb-2">
                 <div className="flex-1 h-px bg-white bg-opacity-30"></div>
-                <span className="text-lg text-white text-opacity-80 or-text">
+                <span className="text-base text-white text-opacity-80 or-text px-2">
                   OR
                 </span>
                 <div className="flex-1 h-px bg-white bg-opacity-30"></div>
               </div>
 
+              {/* Account Type Toggle Switch */}
+              <div className="account-type-container mb-4">
+                <div className="account-type-header mb-2">
+                  <span className="text-base text-white text-opacity-90 input-label">
+                    Account Type
+                  </span>
+                </div>
+                <div className="toggle-container">
+                  <div className="toggle-wrapper" onClick={toggleAccountType}>
+                    <div className={`toggle-track ${formData.accountType === 'commercial' ? 'active' : ''}`}>
+                      <div className={`toggle-thumb ${formData.accountType === 'commercial' ? 'commercial' : 'personal'}`}>
+                        <div className="toggle-inner-shadow"></div>
+                      </div>
+                    </div>
+                    <div className="toggle-labels">
+                      <span className={`toggle-label left ${formData.accountType === 'personal' ? 'active' : ''}`}>
+                        Personal Use
+                      </span>
+                      <span className={`toggle-label right ${formData.accountType === 'commercial' ? 'active' : ''}`}>
+                        Commercial Use
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Name Fields Row */}
-              <div className="flex gap-4 name-row mb-4">
+              <div className="flex gap-2 name-row mb-2">
                 <div className="input-group flex-1">
-                  <Label className="block text-lg text-white text-opacity-90 input-label">
+                  <Label className="block text-base text-white text-opacity-90 input-label">
                     First Name
                   </Label>
                   <Input 
@@ -133,11 +169,11 @@ export default function SignupForm() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     placeholder="First name"
-                    className="aceternity-input w-full rounded-xl text-lg"
+                    className="aceternity-input w-full rounded-lg text-base"
                   />
                 </div>
                 <div className="input-group flex-1">
-                  <Label className="block text-lg text-white text-opacity-90 input-label">
+                  <Label className="block text-base text-white text-opacity-90 input-label">
                     Last Name
                   </Label>
                   <Input 
@@ -146,14 +182,14 @@ export default function SignupForm() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     placeholder="Last name"
-                    className="aceternity-input w-full rounded-xl text-lg"
+                    className="aceternity-input w-full rounded-lg text-base"
                   />
                 </div>
               </div>
 
               {/* Email Input */}
-              <div className="input-group">
-                <Label className="block text-lg text-white text-opacity-90 input-label">
+              <div className="input-group mb-2">
+                <Label className="block text-base text-white text-opacity-90 input-label">
                   Email Address
                 </Label>
                 <Input 
@@ -162,13 +198,13 @@ export default function SignupForm() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your@email.com"
-                  className="aceternity-input w-full rounded-xl text-lg"
+                  className="aceternity-input w-full rounded-lg text-base"
                 />
               </div>
 
               {/* Password Input */}
-              <div className="input-group">
-                <Label className="block text-lg text-white text-opacity-90 input-label">
+              <div className="input-group mb-2">
+                <Label className="block text-base text-white text-opacity-90 input-label">
                   Password
                 </Label>
                 <Input 
@@ -177,13 +213,13 @@ export default function SignupForm() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  className="aceternity-input w-full rounded-xl text-lg"
+                  className="aceternity-input w-full rounded-lg text-base"
                 />
               </div>
 
               {/* Confirm Password Input */}
-              <div className="input-group">
-                <Label className="block text-lg text-white text-opacity-90 input-label">
+              <div className="input-group mb-2">
+                <Label className="block text-base text-white text-opacity-90 input-label">
                   Confirm Password
                 </Label>
                 <Input 
@@ -192,13 +228,13 @@ export default function SignupForm() {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  className="aceternity-input w-full rounded-xl text-lg"
+                  className="aceternity-input w-full rounded-lg text-base"
                 />
               </div>
 
               {/* Password Validation Alerts */}
               {showValidation && (
-                <div className="password-validation mt-4 mb-4">
+                <div className="password-validation mt-2 mb-2">
                   <div className="validation-container">
                     <ValidationItem 
                       isValid={passwordValidation.length}
@@ -231,13 +267,13 @@ export default function SignupForm() {
               {/* Sign Up Button */}
               <button 
                 type="submit"
-                className={`login-btn w-full rounded-xl mb-6 ${
+                className={`login-btn w-full rounded-lg py-2 mb-2 ${
                   isPasswordValid() && formData.firstName && formData.lastName && formData.email 
                     ? '' 
                     : 'opacity-50 cursor-not-allowed'
                 }`}
                 disabled={!isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email}>
-                <span className="text-xl font-semibold text-white">
+                <span className="text-base font-semibold text-white">
                   Sign up →
                 </span>
               </button>
@@ -245,13 +281,13 @@ export default function SignupForm() {
           </div>
 
           {/* Login Link */}
-          <div className="text-center create-account-container">
-            <span className="text-lg text-white text-opacity-80">
+          <div className="text-center create-account-container mt-2">
+            <span className="text-base text-white text-opacity-80">
               Already have an account?{" "}
             </span>
             <a
-              href="/login"
-              className="text-lg text-white font-semibold hover:text-white transition-colors">
+              href="/signin"
+              className="text-base text-white font-semibold hover:text-white transition-colors">
               Sign In
             </a>
           </div>
