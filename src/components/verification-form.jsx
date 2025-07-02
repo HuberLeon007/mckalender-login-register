@@ -99,7 +99,7 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
                   placeholder="123456"
                   value={verificationCode}
                   onChange={handleVerificationCodeChange}
-                  className="aceternity-input w-full rounded-lg text-base text-center tracking-widest text-xl"
+                  className="aceternity-input w-full rounded-lg text-base text-center tracking-widest"
                   maxLength={6}
                 />
               </div>
