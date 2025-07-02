@@ -76,6 +76,13 @@ html {
   font-size: 0.8rem;
 }
 
+.social-btn:hover, .login-btn:hover, button:hover {
+  background: #a3c0ff;
+  color: #fff;
+  border-color: #2563eb;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
 
 
 .social-btn:last-child {
