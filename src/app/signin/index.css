@@ -35,7 +35,7 @@
   padding: 1.5rem 1rem;
   background: #f3f4f6; /* helles Grau */
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
 }
 
 .login-header {
@@ -62,8 +62,6 @@
   overflow: hidden;
 }
 
-
-
 .text-shadow-white {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.95);
@@ -87,14 +85,14 @@
   font-size: 0.8rem;
 }
 
-.social-btn:hover, .login-btn:hover, button:hover {
+.social-btn:hover,
+.login-btn:hover,
+button:hover {
   background: #a3c0ff;
   color: #fff;
   border-color: #2563eb;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-
-
 
 .social-btn:last-child {
   margin-bottom: 0;
@@ -107,7 +105,7 @@
 
 .or-text {
   margin: 0;
-  padding: 0 1.5rem; 
+  padding: 0 1.5rem;
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   font-size: 0.8rem;
@@ -191,7 +189,7 @@
   background: rgba(255, 255, 255, 0.95);
   cursor: pointer;
   position: relative;
-  margin: 0 1rem 0 0; 
+  margin: 0 1rem 0 0;
   padding: 0;
 }
 
@@ -228,8 +226,6 @@
   font-size: 0.8rem;
 }
 
-
-
 /* Content Wrapper */
 .content-wrapper {
   background: rgba(255, 255, 255, 0.97);
@@ -240,8 +236,6 @@
   margin: 0 0 0.5rem 0;
   padding: 0.75rem;
 }
-
-
 
 /* Create Account Container */
 .create-account-container {
@@ -262,8 +256,6 @@
   position: relative;
   font-size: 0.8rem;
 }
-
-
 
 /* Forgot Password Link */
 .remember-forgot-container a {

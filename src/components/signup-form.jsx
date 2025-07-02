@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import {
-  IconBrandGoogle,
-  IconBrandFacebook
-} from "@tabler/icons-react";
+import { IconBrandGoogle, IconBrandFacebook, IconEye, IconEyeOff } from "@tabler/icons-react";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import AccountTypeToggle from "@/components/ui/account-type-toggle";
-import { registerUser, getUserTimezone, handleGoogleRegister } from "@/lib/auth";
+import {
+  registerUser,
+  getUserTimezone,
+  handleGoogleRegister,
+} from "@/lib/auth";
 import VerificationForm from "./verification-form";
 import "./input.css";
 
@@ -23,7 +24,7 @@ export default function SignupForm() {
     confirmPassword: "",
     accountType: "personal", // "personal" or "commercial"
     timezone: "",
-    rolle: "user"
+    rolle: "user",
   });
 
   const [passwordValidation, setPasswordValidation] = useState({
@@ -32,7 +33,7 @@ export default function SignupForm() {
     lowercase: false,
     number: false,
     special: false,
-    match: false
+    match: false,
   });
 
   const [showValidation, setShowValidation] = useState(false);
@@ -45,9 +46,9 @@ export default function SignupForm() {
 
   // Set timezone on component mount
   useEffect(() => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      timezone: getUserTimezone()
+      timezone: getUserTimezone(),
     }));
   }, []);
 
@@ -58,9 +59,9 @@ export default function SignupForm() {
       lowercase: /[a-z]/.test(password),
       number: /\d/.test(password),
       special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
-      match: password === confirmPassword && password.length > 0
+      match: password === confirmPassword && password.length > 0,
     };
-    
+
     setPasswordValidation(validation);
     return validation;
   };
@@ -71,32 +72,41 @@ export default function SignupForm() {
     setFormData(newFormData);
     setError("");
 
-    if (name === 'password' || name === 'confirmPassword') {
-      if (name === 'password' && value.length > 0) {
+    if (name === "password" || name === "confirmPassword") {
+      if (name === "password" && value.length > 0) {
         setShowValidation(true);
       }
       validatePassword(
-        name === 'password' ? value : newFormData.password,
-        name === 'confirmPassword' ? value : newFormData.confirmPassword
+        name === "password" ? value : newFormData.password,
+        name === "confirmPassword" ? value : newFormData.confirmPassword
       );
     }
   };
 
   const handleAccountTypeChange = (newAccountType) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      accountType: newAccountType
+      accountType: newAccountType,
     }));
   };
 
   const isPasswordValid = () => {
-    return Object.values(passwordValidation).every(valid => valid);
+    return Object.values(passwordValidation).every((valid) => valid);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email || !formData.username) {
+
+    // Zeige die Zeitzone in der Konsole beim Anmelden
+    console.log("User Timezone:", formData.timezone);
+
+    if (
+      !isPasswordValid() ||
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.username
+    ) {
       setError("Please fill in all fields correctly.");
       return;
     }
@@ -112,11 +122,11 @@ export default function SignupForm() {
       email: formData.email,
       timezone: formData.timezone,
       rolle: formData.rolle,
-      company: formData.accountType === "commercial"
+      company: formData.accountType === "commercial",
     };
 
     const result = await registerUser(userData);
-    
+
     if (result.success) {
       if (result.needsVerification) {
         setVerificationUsername(formData.username);
@@ -128,13 +138,13 @@ export default function SignupForm() {
     } else {
       setError(result.error);
     }
-    
+
     setIsLoading(false);
   };
 
   const handleGoogleAuth = async () => {
     // Redirect to Google auth endpoint for registration
-    window.location.href = '/auth/google/register';
+    window.location.href = "/auth/google/register";
   };
 
   const handleVerificationSuccess = () => {
@@ -151,14 +161,14 @@ export default function SignupForm() {
 
   if (showVerification) {
     return (
-      <VerificationForm 
+      <VerificationForm
         username={verificationUsername}
         onVerificationSuccess={handleVerificationSuccess}
         onBackToLogin={handleBackToSignup}
       />
     );
   }
-  
+
   return (
     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
       {/* Main Card with Apple Morphgism Style */}
@@ -166,10 +176,16 @@ export default function SignupForm() {
         <div className="w-full h-auto flex flex-col">
           {/* Header */}
           <div className="text-center mb-4">
-            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{color: '#111'}}>
+            <h1
+              className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title"
+              style={{ color: "#111" }}
+            >
               Sign Up
             </h1>
-            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle" style={{color: '#222'}}>
+            <p
+              className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle"
+              style={{ color: "#222" }}
+            >
               Join us today and get started
             </p>
           </div>
@@ -186,23 +202,21 @@ export default function SignupForm() {
             <form onSubmit={handleSubmit} className="flex flex-col">
               {/* Social Login Buttons */}
               <div className="flex flex-col social-buttons-container gap-2 mb-2">
-                <button 
+                <button
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={handleGoogleAuth}>
+                  onClick={handleGoogleAuth}
+                >
                   <IconBrandGoogle className="w-4 h-4" />
-                  <span className="font-medium text-black">
-                    Google
-                  </span>
+                  <span className="font-medium text-black">Google</span>
                 </button>
-                <button 
+                <button
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={() => window.location.href = '/auth/facebook'}>
+                  onClick={() => (window.location.href = "/auth/facebook")}
+                >
                   <IconBrandFacebook className="w-4 h-4" />
-                  <span className="font-medium text-black">
-                    Facebook
-                  </span>
+                  <span className="font-medium text-black">Facebook</span>
                 </button>
               </div>
 
@@ -216,7 +230,7 @@ export default function SignupForm() {
               </div>
 
               {/* Account Type Toggle Switch */}
-              <AccountTypeToggle 
+              <AccountTypeToggle
                 value={formData.accountType}
                 onChange={handleAccountTypeChange}
               />
@@ -227,7 +241,7 @@ export default function SignupForm() {
                   <Label className="block text-base text-black text-opacity-80 input-label">
                     First Name
                   </Label>
-                  <Input 
+                  <Input
                     type="text"
                     name="firstName"
                     value={formData.firstName}
@@ -240,7 +254,7 @@ export default function SignupForm() {
                   <Label className="block text-base text-black text-opacity-80 input-label">
                     Last Name
                   </Label>
-                  <Input 
+                  <Input
                     type="text"
                     name="lastName"
                     value={formData.lastName}
@@ -256,7 +270,7 @@ export default function SignupForm() {
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Username
                 </Label>
-                <Input 
+                <Input
                   type="text"
                   name="username"
                   value={formData.username}
@@ -271,7 +285,7 @@ export default function SignupForm() {
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Email Address
                 </Label>
-                <Input 
+                <Input
                   type="email"
                   name="email"
                   value={formData.email}
@@ -286,7 +300,7 @@ export default function SignupForm() {
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Password
                 </Label>
-                <Input 
+                <Input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
@@ -301,11 +315,11 @@ export default function SignupForm() {
                   tabIndex={-1}
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  <img
-                    src={!showPassword ? "/notSeePW.svg" : "/seePW.svg"}
-                    alt={showPassword ? "Hide password" : "Show password"}
-                    className="w-5 h-5 opacity-70"
-                  />
+                  {showPassword ? (
+                    <IconEyeOff className="w-5 h-5 opacity-70" />
+                  ) : (
+                    <IconEye className="w-5 h-5 opacity-70" />
+                  )}
                 </button>
               </div>
 
@@ -314,7 +328,7 @@ export default function SignupForm() {
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Confirm Password
                 </Label>
-                <Input 
+                <Input
                   type={showConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
                   value={formData.confirmPassword}
@@ -327,13 +341,15 @@ export default function SignupForm() {
                   className="absolute right-3 top-8 flex items-center justify-center"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   tabIndex={-1}
-                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                  aria-label={
+                    showConfirmPassword ? "Hide password" : "Show password"
+                  }
                 >
-                  <img
-                    src={!showConfirmPassword ? "/notSeePW.svg" : "/seePW.svg"}
-                    alt={showConfirmPassword ? "Hide password" : "Show password"}
-                    className="w-5 h-5 opacity-70"
-                  />
+                  {showConfirmPassword ? (
+                    <IconEyeOff className="w-5 h-5 opacity-70" />
+                  ) : (
+                    <IconEye className="w-5 h-5 opacity-70" />
+                  )}
                 </button>
               </div>
 
@@ -341,27 +357,27 @@ export default function SignupForm() {
               {showValidation && (
                 <div className="password-validation mt-2 mb-2">
                   <div className="validation-container">
-                    <ValidationItem 
+                    <ValidationItem
                       isValid={passwordValidation.length}
                       text="At least 8 characters long"
                     />
-                    <ValidationItem 
+                    <ValidationItem
                       isValid={passwordValidation.uppercase}
                       text="Contains uppercase letter"
                     />
-                    <ValidationItem 
+                    <ValidationItem
                       isValid={passwordValidation.lowercase}
                       text="Contains lowercase letter"
                     />
-                    <ValidationItem 
+                    <ValidationItem
                       isValid={passwordValidation.number}
                       text="Contains number"
                     />
-                    <ValidationItem 
+                    <ValidationItem
                       isValid={passwordValidation.special}
                       text="Contains special character"
                     />
-                    <ValidationItem 
+                    <ValidationItem
                       isValid={passwordValidation.match}
                       text="Passwords match"
                     />
@@ -370,10 +386,18 @@ export default function SignupForm() {
               )}
 
               {/* Sign Up Button */}
-              <button 
+              <button
                 type="submit"
-                disabled={isLoading || !isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email || !formData.username}
-                className="login-btn w-full rounded-lg py-2 mb-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                disabled={
+                  isLoading ||
+                  !isPasswordValid() ||
+                  !formData.firstName ||
+                  !formData.lastName ||
+                  !formData.email ||
+                  !formData.username
+                }
+                className="login-btn w-full rounded-lg py-2 mb-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 <span className="text-base font-semibold text-black">
                   {isLoading ? "Creating Account..." : "Sign up →"}
                 </span>
@@ -388,7 +412,8 @@ export default function SignupForm() {
             </span>
             <a
               href="/auth/signin"
-              className="text-base text-black font-semibold hover:text-opacity-80 transition-colors">
+              className="text-base text-black font-semibold hover:text-opacity-80 transition-colors"
+            >
               Sign In
             </a>
           </div>
@@ -401,18 +426,13 @@ export default function SignupForm() {
 const BottomGradient = () => {
   return (
     <>
-      <span
-        className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
-      <span
-        className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
+      <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
+      <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
     </>
   );
 };
 
-const LabelInputContainer = ({
-  children,
-  className
-}) => {
+const LabelInputContainer = ({ children, className }) => {
   return (
     <div className={cn("flex w-full flex-col space-y-2", className)}>
       {children}
@@ -423,13 +443,19 @@ const LabelInputContainer = ({
 // Validation Item Component
 const ValidationItem = ({ isValid, text }) => {
   return (
-    <div className={`validation-item flex items-center gap-2 mb-2 ${isValid ? 'valid' : 'invalid'}`}>
+    <div
+      className={`validation-item flex items-center gap-2 mb-2 ${
+        isValid ? "valid" : "invalid"
+      }`}
+    >
       {isValid ? (
         <CheckCircle className="w-4 h-4 text-green-400" />
       ) : (
         <AlertTriangle className="w-4 h-4 text-red-400" />
       )}
-      <span className={`text-sm ${isValid ? 'text-green-300' : 'text-red-300'}`}>
+      <span
+        className={`text-sm ${isValid ? "text-green-300" : "text-red-300"}`}
+      >
         {text}
       </span>
     </div>

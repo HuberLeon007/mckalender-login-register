@@ -14,14 +14,29 @@ export default function AccountTypeToggle({ value, onChange }) {
         <span className="toggle-title">Account Type</span>
       </div>
       <div className="toggle-switch" onClick={handleToggle}>
-        <div className={`toggle-background ${value === 'commercial' ? 'active' : ''}`}>
-          <div className={`toggle-slider ${value === 'commercial' ? 'commercial' : 'personal'}`}>
-          </div>
+        <div
+          className={`toggle-background ${
+            value === "commercial" ? "active" : ""
+          }`}
+        >
+          <div
+            className={`toggle-slider ${
+              value === "commercial" ? "commercial" : "personal"
+            }`}
+          ></div>
           <div className="toggle-text-container">
-            <span className={`toggle-text left ${value === 'personal' ? 'selected' : ''}`}>
+            <span
+              className={`toggle-text left ${
+                value === "personal" ? "selected" : ""
+              }`}
+            >
               Personal Use
             </span>
-            <span className={`toggle-text right ${value === 'commercial' ? 'selected' : ''}`}>
+            <span
+              className={`toggle-text right ${
+                value === "commercial" ? "selected" : ""
+              }`}
+            >
               Commercial Use
             </span>
           </div>

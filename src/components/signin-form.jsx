@@ -7,7 +7,7 @@ import {
   IconBrandGoogle,
   IconBrandFacebook,
   IconEye,
-  IconEyeOff
+  IconEyeOff,
 } from "@tabler/icons-react";
 import { loginUser, getBaseUrl } from "@/lib/auth";
 import { useGoogleAuth } from "@/hooks/useGoogleAuth";
@@ -17,7 +17,7 @@ import "./input.css";
 export default function LoginForm() {
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,16 +27,16 @@ export default function LoginForm() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.username || !formData.password) {
       setError("Please fill in all fields.");
       return;
@@ -46,7 +46,7 @@ export default function LoginForm() {
     setError("");
 
     const result = await loginUser(formData.username, formData.password);
-    
+
     if (result.success) {
       // Successful login
       window.location.href = `${getBaseUrl()}/web/cookies`;
@@ -57,14 +57,14 @@ export default function LoginForm() {
     } else {
       setError(result.error);
     }
-    
+
     setIsLoading(false);
   };
 
   const handleGoogleAuth = async () => {
     // This will be handled by Google OAuth integration
     // For now, redirect to Google auth endpoint
-    window.location.href = '/auth/google/login';
+    window.location.href = "/auth/google/login";
   };
 
   const handleVerificationSuccess = () => {
@@ -80,7 +80,7 @@ export default function LoginForm() {
 
   if (showVerification) {
     return (
-      <VerificationForm 
+      <VerificationForm
         username={verificationUsername}
         onVerificationSuccess={handleVerificationSuccess}
         onBackToLogin={handleBackToLogin}
@@ -95,10 +95,16 @@ export default function LoginForm() {
         <div className="w-full h-auto flex-1 flex flex-col">
           {/* Header */}
           <div className="text-center mb-4">
-            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{color: '#111'}}>
+            <h1
+              className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title"
+              style={{ color: "#111" }}
+            >
               Sign In
             </h1>
-            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle" style={{color: '#222'}}>
+            <p
+              className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle"
+              style={{ color: "#222" }}
+            >
               Welcome back, you've been missed.
             </p>
           </div>
@@ -115,23 +121,21 @@ export default function LoginForm() {
             <form onSubmit={handleSubmit} className="flex flex-col min-h-0">
               {/* Social Login Buttons */}
               <div className="flex flex-col social-buttons-container gap-2 mb-2">
-                <button 
+                <button
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={handleGoogleAuth}>
+                  onClick={handleGoogleAuth}
+                >
                   <IconBrandGoogle className="w-4 h-4" />
-                  <span className="font-medium text-black">
-                    Google
-                  </span>
+                  <span className="font-medium text-black">Google</span>
                 </button>
-                <button 
+                <button
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={() => window.location.href = '/auth/facebook'}>
+                  onClick={() => (window.location.href = "/auth/facebook")}
+                >
                   <IconBrandFacebook className="w-4 h-4" />
-                  <span className="font-medium text-black">
-                    Facebook
-                  </span>
+                  <span className="font-medium text-black">Facebook</span>
                 </button>
               </div>
 
@@ -149,8 +153,8 @@ export default function LoginForm() {
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Username or Email
                 </Label>
-                <Input 
-                  type="text" 
+                <Input
+                  type="text"
                   name="username"
                   placeholder="your@email.com or username"
                   value={formData.username}
@@ -164,7 +168,7 @@ export default function LoginForm() {
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Password
                 </Label>
-                <Input 
+                <Input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="••••••••"
@@ -189,19 +193,17 @@ export default function LoginForm() {
 
               {/* Forgot Password */}
               <div className="flex items-center justify-end remember-forgot-container mb-2">
-                <a
-                  href="#"
-                  className="text-sm text-black"
-                >
+                <a href="#" className="text-sm text-black">
                   Forgot Password?
                 </a>
               </div>
 
               {/* Sign In Button */}
-              <button 
+              <button
                 type="submit"
                 disabled={isLoading}
-                className="login-btn w-full rounded-lg py-2 disabled:opacity-50">
+                className="login-btn w-full rounded-lg py-2 disabled:opacity-50"
+              >
                 <span className="text-base font-semibold text-black">
                   {isLoading ? "Signing in..." : "Sign in →"}
                 </span>
@@ -216,7 +218,8 @@ export default function LoginForm() {
             </span>
             <a
               href="/auth/signup"
-              className="text-base text-black font-semibold">
+              className="text-base text-black font-semibold"
+            >
               Create New Account
             </a>
           </div>

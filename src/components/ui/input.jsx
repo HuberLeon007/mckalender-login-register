@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useMotionTemplate, useMotionValue, motion } from "motion/react";
@@ -10,11 +10,7 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
 
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY
-  }) {
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
     let { left, top } = currentTarget.getBoundingClientRect();
 
     mouseX.set(clientX - left);
@@ -34,7 +30,8 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
-      className="group/input rounded-lg p-[2px] transition duration-300">
+      className="group/input rounded-lg p-[2px] transition duration-300"
+    >
       <input
         type={type}
         className={cn(
@@ -42,7 +39,8 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
           className
         )}
         ref={ref}
-        {...props} />
+        {...props}
+      />
     </motion.div>
   );
 });

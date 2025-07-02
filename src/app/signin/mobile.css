@@ -28,7 +28,7 @@
     margin: 2rem 0 0 0;
     background: #f3f4f6;
     border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   }
 
   /* Mobile Header */
@@ -166,15 +166,15 @@
   .login-btn:hover,
   .create-account-container a:hover,
   .remember-forgot-container a:hover {
-    transform: none ;
-    box-shadow: none ;
-    text-shadow: none ;
-    background: inherit ;
-    border-color: inherit ;
+    transform: none;
+    box-shadow: none;
+    text-shadow: none;
+    background: inherit;
+    border-color: inherit;
   }
 
   .create-account-container a:hover::after {
-    width: 0 ;
+    width: 0;
   }
 
   /* Mobile Focus States */

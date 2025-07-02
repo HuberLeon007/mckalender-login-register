@@ -39,7 +39,7 @@ html {
   padding: 1.5rem 1rem;
   background: #f3f4f6; /* helles Grau */
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
 }
 
 .login-header {
@@ -56,8 +56,6 @@ html {
   position: relative;
   overflow: visible;
 }
-
-
 
 /* Social Buttons */
 .social-buttons-container {
@@ -76,14 +74,14 @@ html {
   font-size: 0.8rem;
 }
 
-.social-btn:hover, .login-btn:hover, button:hover {
+.social-btn:hover,
+.login-btn:hover,
+button:hover {
   background: #a3c0ff;
   color: #fff;
   border-color: #2563eb;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-
-
 
 .social-btn:last-child {
   margin-bottom: 0;
@@ -222,8 +220,6 @@ html {
   font-size: 0.8rem;
 }
 
-
-
 .login-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -241,8 +237,6 @@ html {
   margin: 0 0 0.5rem 0;
   padding: 0.75rem;
 }
-
-
 
 /* Create Account Container */
 .create-account-container {
@@ -264,8 +258,6 @@ html {
   font-size: 0.8rem;
 }
 
-
-
 @media (max-width: 768px) {
   .login-container {
     padding: 0.25rem;
@@ -274,7 +266,7 @@ html {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    overflow-y: unset; 
+    overflow-y: unset;
     scroll-behavior: smooth;
     padding-top: 0.5rem;
   }
@@ -298,7 +290,8 @@ html {
     max-height: none;
     height: auto;
   }
-  html, body {
+  html,
+  body {
     overflow-y: auto;
     height: auto;
   }

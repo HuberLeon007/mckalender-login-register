@@ -15,7 +15,12 @@ export default function Home() {
       {showAnimation ? (
         <BackgroundGradientAnimation />
       ) : (
-        <div className="w-full h-screen min-h-screen" style={{background: "linear-gradient(40deg, rgb(15,23,42), rgb(30,41,59))"}} />
+        <div
+          className="w-full h-screen min-h-screen"
+          style={{
+            background: "linear-gradient(40deg, rgb(15,23,42), rgb(30,41,59))",
+          }}
+        />
       )}
     </>
   );

@@ -4,21 +4,25 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { verifyEmail, resendVerificationCode } from "@/lib/auth";
 
-export default function VerificationForm({ username, onVerificationSuccess, onBackToLogin }) {
+export default function VerificationForm({
+  username,
+  onVerificationSuccess,
+  onBackToLogin,
+}) {
   const [verificationCode, setVerificationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
   const handleVerificationCodeChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+    const value = e.target.value.replace(/\D/g, ""); // Remove non-digits
     setVerificationCode(value.slice(0, 6)); // Limit to 6 digits
     setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (verificationCode.length !== 6) {
       setError("Please enter a 6-digit verification code.");
       return;
@@ -28,7 +32,7 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
     setError("");
 
     const result = await verifyEmail(username, verificationCode);
-    
+
     if (result.success) {
       setMessage("Email verified successfully! You can now login.");
       setTimeout(() => {
@@ -37,7 +41,7 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
     } else {
       setError(result.error);
     }
-    
+
     setIsLoading(false);
   };
 
@@ -47,13 +51,13 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
     setMessage("");
 
     const result = await resendVerificationCode(username);
-    
+
     if (result.success) {
       setMessage("Verification code resent! Please check your email.");
     } else {
       setError(result.error);
     }
-    
+
     setIsLoading(false);
   };
 
@@ -64,10 +68,16 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
         <div className="w-full h-auto flex-1 flex flex-col">
           {/* Header */}
           <div className="text-center mb-4">
-            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{color: '#111'}}>
+            <h1
+              className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title"
+              style={{ color: "#111" }}
+            >
               Verify Email
             </h1>
-            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle" style={{color: '#222'}}>
+            <p
+              className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle"
+              style={{ color: "#222" }}
+            >
               Please enter the 6-digit code sent to your email
             </p>
           </div>
@@ -94,8 +104,8 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
                 <Label className="block text-base text-black text-opacity-80 input-label">
                   Verification Code
                 </Label>
-                <Input 
-                  type="text" 
+                <Input
+                  type="text"
                   placeholder="123456"
                   value={verificationCode}
                   onChange={handleVerificationCodeChange}
@@ -105,29 +115,32 @@ export default function VerificationForm({ username, onVerificationSuccess, onBa
               </div>
 
               {/* Verify Button */}
-              <button 
+              <button
                 type="submit"
                 disabled={isLoading || verificationCode.length !== 6}
-                className="login-btn w-full rounded-lg py-2 mb-3 disabled:opacity-50">
+                className="login-btn w-full rounded-lg py-2 mb-3 disabled:opacity-50"
+              >
                 <span className="text-base font-semibold text-black">
                   {isLoading ? "Verifying..." : "Verify Email"}
                 </span>
               </button>
 
               {/* Resend Code Button */}
-              <button 
+              <button
                 type="button"
                 onClick={handleResendCode}
                 disabled={isLoading}
-                className="text-sm text-black text-opacity-70 hover:text-opacity-100 mb-3 disabled:opacity-50">
+                className="text-sm text-black text-opacity-70 hover:text-opacity-100 mb-3 disabled:opacity-50"
+              >
                 Didn't receive the code? Resend
               </button>
 
               {/* Back to Login */}
-              <button 
+              <button
                 type="button"
                 onClick={onBackToLogin}
-                className="text-sm text-black text-opacity-70 hover:text-opacity-100">
+                className="text-sm text-black text-opacity-70 hover:text-opacity-100"
+              >
                 ← Back to Login
               </button>
             </form>
