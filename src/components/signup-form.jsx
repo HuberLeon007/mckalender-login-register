@@ -9,6 +9,7 @@ import {
   IconBrandFacebook
 } from "@tabler/icons-react";
 import { CheckCircle, AlertTriangle } from "lucide-react";
+import AccountTypeToggle from "@/components/ui/account-type-toggle";
 import "./morphgism-styles.css";
 
 export default function SignupForm() {
@@ -63,10 +64,10 @@ export default function SignupForm() {
     }
   };
 
-  const toggleAccountType = () => {
+  const handleAccountTypeChange = (newAccountType) => {
     setFormData(prev => ({
       ...prev,
-      accountType: prev.accountType === "personal" ? "commercial" : "personal"
+      accountType: newAccountType
     }));
   };
 
@@ -134,30 +135,10 @@ export default function SignupForm() {
               </div>
 
               {/* Account Type Toggle Switch */}
-              <div className="account-type-container mb-4">
-                <div className="account-type-header mb-2 text-left">
-                  <span className="text-base text-white text-opacity-90 input-label text-left block">
-                    Account Type
-                  </span>
-                </div>
-                <div className="toggle-container">
-                  <div className="toggle-wrapper" onClick={toggleAccountType}>
-                    <div className={`toggle-track ${formData.accountType === 'commercial' ? 'active' : ''}`}>
-                      <div className={`toggle-thumb ${formData.accountType === 'commercial' ? 'commercial' : 'personal'}`}>
-                        <div className="toggle-inner-shadow"></div>
-                      </div>
-                    </div>
-                    <div className="toggle-labels">
-                      <span className={`toggle-label left ${formData.accountType === 'personal' ? 'active' : ''}`}>
-                        Personal Use
-                      </span>
-                      <span className={`toggle-label right ${formData.accountType === 'commercial' ? 'active' : ''}`}>
-                        Commercial Use
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <AccountTypeToggle 
+                value={formData.accountType}
+                onChange={handleAccountTypeChange}
+              />
 
               {/* Name Fields Row */}
               <div className="flex gap-2 name-row mb-2">
