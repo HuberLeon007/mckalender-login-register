@@ -8,7 +8,7 @@ import {
   IconBrandGoogle,
   IconBrandFacebook
 } from "@tabler/icons-react";
-import "./morphgism-styles.css";
+import "./input.css";
 
 export default function LoginForm() {
   const [error, setError] = useState("");
@@ -24,10 +24,10 @@ export default function LoginForm() {
         <div className="w-full h-auto flex-1 flex flex-col">
           {/* Header */}
           <div className="text-center mb-4">
-            <h1 className="text-2xl sm:text-3xl text-white font-bold tracking-tight mb-1 modern-title">
+            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{color: '#111'}}>
               Sign In
             </h1>
-            <p className="text-sm text-white text-opacity-90 leading-relaxed modern-subtitle">
+            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle" style={{color: '#222'}}>
               Welcome back, you've been missed.
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function LoginForm() {
             </div>
           )}
 
-          {/* Content Wrapper with Glassmorphism */}
+          {/* Content Wrapper */}
           <div className="content-wrapper rounded-xl p-2 flex-1 overflow-y-visible">
             <form onSubmit={handleSubmit} className="flex flex-col min-h-0">
               {/* Social Login Buttons */}
@@ -49,7 +49,7 @@ export default function LoginForm() {
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
                   onClick={() => window.location.href = '/api/auth/google'}>
                   <IconBrandGoogle className="w-4 h-4" />
-                  <span className="font-medium text-white">
+                  <span className="font-medium text-black">
                     Google
                   </span>
                 </button>
@@ -58,7 +58,7 @@ export default function LoginForm() {
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
                   onClick={() => window.location.href = '/api/auth/facebook'}>
                   <IconBrandFacebook className="w-4 h-4" />
-                  <span className="font-medium text-white">
+                  <span className="font-medium text-black">
                     Facebook
                   </span>
                 </button>
@@ -66,16 +66,16 @@ export default function LoginForm() {
 
               {/* OR Divider */}
               <div className="flex items-center or-divider mb-2">
-                <div className="flex-1 h-px bg-white bg-opacity-30"></div>
-                <span className="text-base text-white text-opacity-80 or-text px-2">
+                <div className="flex-1 h-px bg-black bg-opacity-30"></div>
+                <span className="text-base text-black text-opacity-80 or-text px-2">
                   OR
                 </span>
-                <div className="flex-1 h-px bg-white bg-opacity-30"></div>
+                <div className="flex-1 h-px bg-black bg-opacity-30"></div>
               </div>
 
               {/* Email Input */}
               <div className="input-group mb-2">
-                <Label className="block text-base text-white text-opacity-90 input-label">
+                <Label className="block text-base text-black text-opacity-80 input-label">
                   Email Address
                 </Label>
                 <Input 
@@ -86,14 +86,14 @@ export default function LoginForm() {
               </div>
 
               {/* Password Input */}
-              <div className="input-group mb-2">
-                <Label className="block text-base text-white text-opacity-90 input-label">
+              <div className="input-group mb-2 relative">
+                <Label className="block text-base text-black text-opacity-80 input-label">
                   Password
                 </Label>
                 <Input 
-                  type="password" 
+                  type="password"
                   placeholder="••••••••"
-                  className="aceternity-input w-full rounded-lg text-base"
+                  className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
               </div>
 
@@ -101,7 +101,7 @@ export default function LoginForm() {
               <div className="flex items-center justify-end remember-forgot-container mb-2">
                 <a
                   href="#"
-                  className="text-sm text-white hover:text-white transition-colors"
+                  className="text-sm text-black"
                 >
                   Forgot Password?
                 </a>
@@ -111,7 +111,7 @@ export default function LoginForm() {
               <button 
                 type="submit"
                 className="login-btn w-full rounded-lg py-2">
-                <span className="text-base font-semibold text-white">
+                <span className="text-base font-semibold text-black">
                   Sign in →
                 </span>
               </button>
@@ -120,12 +120,12 @@ export default function LoginForm() {
 
           {/* Create Account Link */}
           <div className="text-center create-account-container mt-2">
-            <span className="text-base text-white text-opacity-80">
+            <span className="text-base text-black text-opacity-70">
               Don't have an account?{" "}
             </span>
             <a
               href="/signup"
-              className="text-base text-white font-semibold hover:text-white transition-colors">
+              className="text-base text-black font-semibold">
               Create New Account
             </a>
           </div>

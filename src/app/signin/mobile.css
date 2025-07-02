@@ -16,16 +16,19 @@
 
   .login-card-wrapper {
     width: 100%;
-    max-width: 260px;
-    min-width: 180px;
+    max-width: 320px; /* vorher 260px */
+    min-width: 220px;
     margin: 0 auto;
     max-height: none;
     overflow-y: visible;
   }
 
   .login-card-inner {
-    padding: 0.25rem 0.5rem;
+    padding: 0.75rem 0.75rem;
     margin: 2rem 0 0 0;
+    background: #f3f4f6;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   }
 
   /* Mobile Header */
@@ -35,15 +38,15 @@
   }
 
   .login-title {
-    font-size: 1rem;
-    line-height: 1;
+    font-size: 1.2rem;
+    line-height: 1.1;
     margin: 0 0 0.1rem 0;
+    color: #222;
   }
 
   .login-subtitle {
-    font-size: 0.65rem;
-    line-height: 1.2;
-    margin: 0;
+    font-size: 0.85rem;
+    color: #555;
   }
 
   /* Mobile Content Wrapper */
@@ -163,15 +166,15 @@
   .login-btn:hover,
   .create-account-container a:hover,
   .remember-forgot-container a:hover {
-    transform: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    background: inherit !important;
-    border-color: inherit !important;
+    transform: none ;
+    box-shadow: none ;
+    text-shadow: none ;
+    background: inherit ;
+    border-color: inherit ;
   }
 
   .create-account-container a:hover::after {
-    width: 0 !important;
+    width: 0 ;
   }
 
   /* Mobile Focus States */

@@ -4,13 +4,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import {
-  IconBrandGithub,
   IconBrandGoogle,
   IconBrandFacebook
 } from "@tabler/icons-react";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import AccountTypeToggle from "@/components/ui/account-type-toggle";
-import "./morphgism-styles.css";
+import "./input.css";
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -201,7 +200,7 @@ export default function SignupForm() {
               </div>
 
               {/* Password Input */}
-              <div className="input-group mb-2">
+              <div className="input-group mb-2 relative">
                 <Label className="block text-base text-white text-opacity-90 input-label">
                   Password
                 </Label>
@@ -211,12 +210,12 @@ export default function SignupForm() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  className="aceternity-input w-full rounded-lg text-base"
+                  className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
               </div>
 
               {/* Confirm Password Input */}
-              <div className="input-group mb-2">
+              <div className="input-group mb-2 relative">
                 <Label className="block text-base text-white text-opacity-90 input-label">
                   Confirm Password
                 </Label>
@@ -226,7 +225,7 @@ export default function SignupForm() {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  className="aceternity-input w-full rounded-lg text-base"
+                  className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
               </div>
 

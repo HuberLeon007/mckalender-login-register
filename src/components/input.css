@@ -2,15 +2,10 @@
 
 /* Main Card Styling */
 .morphgism-card {
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f2f3f5; /* gräulicher Hintergrund */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 999;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   margin: 2rem 0;
@@ -56,92 +51,38 @@
   }
 }
 
-.morphgism-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.06),
-    transparent
-  );
-  transition: left 0.8s ease;
-}
 
-.morphgism-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.15), 
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.morphgism-card:hover::before {
-  left: 100%;
-}
 
 /* Title Styling */
 .modern-title {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  color: #111;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  filter: none;
   padding: 6px;
   font-size: 1.75rem;
 }
 
 .modern-subtitle {
-  color: rgba(255, 255, 255, 0.75);
+  color: #222;
   font-weight: 400;
   font-size: 0.875rem;
 }
 
-/* Content Wrapper - Glassmorphism */
+/* Content Wrapper */
 .content-wrapper {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: #f2f3f5; /* gräulicher Hintergrund */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
   margin: 0 0 0.375rem 0;
   padding: 0.5rem;
 }
 
-.content-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-}
 
-.content-wrapper:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
-}
 
 /* Social Buttons */
 .social-buttons-container {
@@ -150,23 +91,17 @@
 }
 
 .social-btn {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 1);
+  background: #f2f3f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #111;
   font-weight: 500;
-  transition: all 0.4s ease;
   cursor: pointer;
   margin: 0 0 0.3rem 0;
   padding: 0.375rem 0.5rem;
   font-size: 0.75rem;
 }
 
-.social-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-}
+
 
 .social-btn:last-child {
   margin-bottom: 0;
@@ -181,7 +116,7 @@
 .or-text {
   margin: 0;
   padding: 0 1rem; 
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   font-size: 0.75rem;
 }
@@ -195,7 +130,7 @@
 .input-label {
   margin: 0 0 0.15rem 0;
   padding: 0;
-  color: rgba(255, 255, 255, 1) !important;
+  color: rgba(0, 0, 0, 0.8) !important;
   font-weight: 500;
   font-size: 0.75rem;
 }
@@ -205,14 +140,13 @@
   margin: 0 0 0.3rem 0;
 }
 
-/* Override Aceternity Input Styles to match Apple Morphgism */
+/* Override Aceternity Input Styles */
 .aceternity-input {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: rgba(255, 255, 255, 1) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  color: rgba(0, 0, 0, 0.9) !important;
   font-weight: 500 !important;
   outline: none !important;
-  transition: all 0.3s ease !important;
   font-size: 0.75rem !important;
   margin: 0 !important;
   padding: 0.375rem 0.5rem !important;
@@ -220,21 +154,20 @@
 }
 
 .aceternity-input::placeholder {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: rgba(0, 0, 0, 0.5) !important;
   font-weight: 400 !important;
 }
 
 .aceternity-input:focus {
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  background: rgba(255, 255, 255, 0.18) !important;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
-  transform: translateY(-1px) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Remove Aceternity's motion div background */
 .aceternity-input:focus-within,
 .aceternity-input:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Override the motion div wrapper from Aceternity */
@@ -245,20 +178,19 @@
 
 /* Force override Aceternity's motion wrapper styles */
 .aceternity-input .group\/input {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
 }
 
 .aceternity-input .group\/input:hover {
-  background: rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 .aceternity-input .group\/input:focus-within {
-  background: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) !important;
-  transform: translateY(-1px) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Input inside the motion wrapper */
@@ -266,11 +198,11 @@
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  color: rgba(255, 255, 255, 1) !important;
+  color: rgba(0, 0, 0, 0.9) !important;
 }
 
 .aceternity-input input::placeholder {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .create-account-container a:hover::after {
@@ -279,23 +211,17 @@
 
 /* Sign Up/Login Button */
 .login-btn {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
-  transition: all 0.4s ease;
   font-weight: 600;
   margin: -0.5rem 0 0 0;
   padding: 0.375rem 0.5rem;
   font-size: 0.75rem;
 }
 
-.login-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
+
 
 /* Create Account / Sign In Container */
 .create-account-container {
@@ -304,40 +230,20 @@
 }
 
 .create-account-container span {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(0, 0, 0, 0.7);
   font-weight: 400;
   font-size: 0.75rem;
 }
 
 .create-account-container a {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
   position: relative;
   font-size: 0.75rem;
 }
 
-.create-account-container a:hover {
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
-}
 
-.create-account-container a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.8);
-  transition: width 0.3s ease;
-}
-
-.create-account-container a:hover::after {
-  width: 100%;
-}
 
 /* Forgot Password */
 .remember-forgot-container {
@@ -346,17 +252,13 @@
 }
 
 .remember-forgot-container a {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.3s ease;
   font-size: 0.65rem;
 }
 
-.remember-forgot-container a:hover {
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
+
 
 /* Password Validation Styles */
 .password-validation {
@@ -364,15 +266,14 @@
 }
 
 .validation-container {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   padding: 0.5rem;
   margin: 0.375rem 0;
 }
 
 .validation-item {
-  transition: all 0.3s ease;
   padding: 0.15rem 0;
   font-size: 0.7rem;
 }
@@ -415,11 +316,10 @@
 .toggle-track {
   width: 100%;
   height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: hidden;
 }
 
@@ -440,36 +340,28 @@
 }
 
 .toggle-track.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .toggle-thumb {
   width: calc(50% - 4px);
   height: 32px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   position: absolute;
   top: 4px;
   left: 4px;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.2),
-    0 1px 2px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
 
 .toggle-thumb.commercial {
   transform: translateX(calc(100% + 4px));
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.25),
-    0 2px 4px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-inner-shadow {
@@ -502,9 +394,7 @@
 .toggle-label {
   font-size: 0.75rem;
   font-weight: 500;
-  transition: all 0.3s ease;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.8);
   width: 50%;
   display: flex;
   align-items: center;
@@ -513,24 +403,11 @@
 }
 
 .toggle-label.active {
-  color: rgba(10, 10, 10, 1);
+  color: rgba(255, 255, 255, 1);
   font-weight: 700;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
-/* Hover Effects */
-.toggle-wrapper:hover .toggle-track {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-}
 
-.toggle-wrapper:hover .toggle-thumb {
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
-}
 
 /* Mobile Responsive */
 @media (max-width: 480px) {

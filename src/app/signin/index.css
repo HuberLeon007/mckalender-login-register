@@ -26,12 +26,16 @@
   padding: 0;
   max-height: none;
   overflow-y: visible;
-  max-width: 320px;
+  max-width: 400px; /* vorher 320px */
+  min-width: 340px;
 }
 
 .login-card-inner {
   margin: 2rem 0;
-  padding: 1rem 0.5rem;
+  padding: 1.5rem 1rem;
+  background: #f3f4f6; /* helles Grau */
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
 }
 
 .login-header {
@@ -43,83 +47,27 @@
 .login-title {
   margin: 0 0 0.15rem 0;
   padding: 0;
-  color: rgba(255, 255, 255, 1);
+  color: #222;
   font-weight: 700;
-  font-size: 1.2rem;
-}
-
-.login-subtitle {
-  margin: 0;
-  padding: 0;
-  color: rgba(255, 255, 255, 1);
-  font-weight: 500;
-  font-size: 0.75rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
 }
 
 .logincard {
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 999;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
 }
 
-.logincard::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.06),
-    transparent
-  );
-  transition: left 0.8s ease;
-}
 
-.logincard:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.logincard:hover::before {
-  left: 100%;
-}
 
 .text-shadow-white {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.95);
   font-weight: 500;
-}
-
-.modern-title {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  padding: 10px 0;
-}
-
-.modern-subtitle {
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 400;
 }
 
 /* Social Buttons */
@@ -129,23 +77,17 @@
 }
 
 .social-btn {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
-  transition: all 0.4s ease;
   cursor: pointer;
   margin: 0 0 0.4rem 0;
   padding: 0.5rem 0.75rem;
   font-size: 0.8rem;
 }
 
-.social-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-}
+
 
 .social-btn:last-child {
   margin-bottom: 0;
@@ -159,7 +101,7 @@
 .or-text {
   margin: 0;
   padding: 0 1.5rem; 
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   font-size: 0.8rem;
 }
@@ -173,50 +115,48 @@
 .input-label {
   margin: 0 0 0.2rem 0;
   padding: 0;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   font-size: 0.8rem;
 }
 
 .login-input {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.9);
   font-weight: 500;
   outline: none;
-  transition: all 0.3s ease;
   font-size: 0.8rem;
   margin: 0;
   padding: 0.5rem 0.75rem;
 }
 
 .login-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
 }
 
 .login-input:focus {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
-  transform: translateY(-1px);
+  border-color: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .aceternity-input {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgb(23, 21, 21);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.9);
   box-shadow: none;
 }
 
 .aceternity-input:focus {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .aceternity-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /* Custom Checkbox */
@@ -231,7 +171,7 @@
 }
 
 .remember-label span {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
 }
 
@@ -239,9 +179,9 @@
   appearance: none;
   width: 16px;
   height: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
   cursor: pointer;
   position: relative;
   margin: 0 1rem 0 0; 
@@ -249,8 +189,8 @@
 }
 
 .custom-checkbox:checked {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0, 0, 0, 0.5);
 }
 
 .custom-checkbox:checked::after {
@@ -258,79 +198,43 @@
   position: absolute;
   top: -2px;
   left: 1px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   font-size: 12px;
   font-weight: bold;
 }
 
 /* Links */
 .modern-link {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.modern-link:hover {
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Sign In Button */
 .login-btn {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
-  transition: all 0.4s ease;
   font-weight: 600;
   margin: -1rem 0 0 0;
   padding: 0.5rem 0.75rem;
   font-size: 0.8rem;
 }
 
-.login-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
 
-/* Content Wrapper - Glassmorphism */
+
+/* Content Wrapper */
 .content-wrapper {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
   margin: 0 0 0.5rem 0;
   padding: 0.75rem;
 }
 
-.content-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-}
 
-.content-wrapper:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
-}
 
 /* Create Account Container */
 .create-account-container {
@@ -339,47 +243,25 @@
 }
 
 .create-account-container span {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(0, 0, 0, 0.7);
   font-weight: 400;
   font-size: 0.8rem;
 }
 
 .create-account-container a {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
   position: relative;
   font-size: 0.8rem;
 }
 
-.create-account-container a:hover {
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
-}
 
-.create-account-container a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.8);
-  transition: width 0.3s ease;
-}
 
 /* Forgot Password Link */
 .remember-forgot-container a {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.3s ease;
   font-size: 0.7rem;
-}
-
-.remember-forgot-container a:hover {
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
