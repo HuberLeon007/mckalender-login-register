@@ -18,7 +18,7 @@ html {
   margin: 0;
   padding: 0.5rem;
   min-height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; entfernt, damit nicht einzeln gescrollt werden kann */
   scroll-behavior: smooth;
   display: flex;
   align-items: flex-start;
@@ -30,13 +30,14 @@ html {
   margin: 0 auto;
   padding: 0;
   max-height: none;
-  overflow-y: visible;
+  /* overflow-y: visible; entfernt, damit Wrapper nicht scrollt */
   max-width: 320px;
 }
 
 .login-card-inner {
   margin: 2rem 0 0 0;
   padding: 1rem 0.5rem;
+  /* overflow-y: visible; entfernt, damit Inner nicht scrollt */
 }
 
 .login-header {
@@ -72,7 +73,7 @@ html {
   z-index: 999;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .logincard::before {
@@ -299,7 +300,7 @@ html {
     inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   margin: 0 0 0.5rem 0;
   padding: 0.75rem;
 }
@@ -367,4 +368,42 @@ html {
 
 .create-account-container a:hover::after {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 0.25rem;
+    min-height: 100vh;
+    max-height: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: unset !important; /* WICHTIG: Kein eigenes Scrollen auf Mobile, sondern Seite wächst */
+    scroll-behavior: smooth;
+    padding-top: 0.5rem;
+  }
+  .login-card-wrapper {
+    width: 100%;
+    max-width: 260px;
+    min-width: 180px;
+    margin: 0 auto;
+    max-height: none;
+    overflow-y: unset !important; /* Kein eigenes Scrollen auf Mobile */
+  }
+  .login-card-inner {
+    margin: 2rem 0 0 0;
+    padding: 0.5rem 0.5rem;
+    overflow-y: unset !important; /* Kein eigenes Scrollen auf Mobile */
+  }
+  .login-container,
+  .login-card-wrapper,
+  .login-card-inner {
+    overflow-y: unset !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  html, body {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
 }

@@ -15,10 +15,11 @@ export default function SignupForm() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
-    accountType: "personal" // "personal" or "commercial"
+    accountType: "personal", // "personal" or "commercial"
   });
 
   const [passwordValidation, setPasswordValidation] = useState({
@@ -75,8 +76,9 @@ export default function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isPasswordValid() && formData.firstName && formData.lastName && formData.email) {
-      console.log("Form submitted successfully", formData);
+    if (isPasswordValid() && formData.firstName && formData.lastName && formData.email && formData.username) {
+      console.log("Signup-Daten:", JSON.stringify(formData, null, 2));
+      // ...hier könnte später ein API-Call kommen
     } else {
       console.log("Form validation failed");
     }
@@ -85,8 +87,8 @@ export default function SignupForm() {
   return (
     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
       {/* Main Card with Apple Morphgism Style */}
-      <div className="rounded-2xl morphgism-card p-3 max-h-screen overflow-y-auto flex flex-col">
-        <div className="w-full h-auto flex-1 flex flex-col">
+      <div className="rounded-2xl morphgism-card p-3 flex flex-col">
+        <div className="w-full h-auto flex flex-col">
           {/* Header */}
           <div className="text-center mb-4">
             <h1 className="text-2xl sm:text-3xl text-white font-bold tracking-tight mb-1 modern-title">
@@ -98,8 +100,8 @@ export default function SignupForm() {
           </div>
 
           {/* Content Wrapper with Glassmorphism */}
-          <div className="content-wrapper rounded-xl p-2 flex-1 overflow-y-visible">
-            <form onSubmit={handleSubmit} className="flex flex-col min-h-0">
+          <div className="content-wrapper rounded-xl p-2 flex-1">
+            <form onSubmit={handleSubmit} className="flex flex-col">
               {/* Social Login Buttons */}
               <div className="flex flex-col social-buttons-container gap-2 mb-2">
                 <button 
@@ -133,8 +135,8 @@ export default function SignupForm() {
 
               {/* Account Type Toggle Switch */}
               <div className="account-type-container mb-4">
-                <div className="account-type-header mb-2">
-                  <span className="text-base text-white text-opacity-90 input-label">
+                <div className="account-type-header mb-2 text-left">
+                  <span className="text-base text-white text-opacity-90 input-label text-left block">
                     Account Type
                   </span>
                 </div>
@@ -185,6 +187,21 @@ export default function SignupForm() {
                     className="aceternity-input w-full rounded-lg text-base"
                   />
                 </div>
+              </div>
+
+              {/* Username Input */}
+              <div className="input-group mb-2">
+                <Label className="block text-base text-white text-opacity-90 input-label">
+                  Username
+                </Label>
+                <Input 
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  placeholder="Username"
+                  className="aceternity-input w-full rounded-lg text-base"
+                />
               </div>
 
               {/* Email Input */}
@@ -268,11 +285,11 @@ export default function SignupForm() {
               <button 
                 type="submit"
                 className={`login-btn w-full rounded-lg py-2 mb-2 ${
-                  isPasswordValid() && formData.firstName && formData.lastName && formData.email 
+                  isPasswordValid() && formData.firstName && formData.lastName && formData.email && formData.username 
                     ? '' 
                     : 'opacity-50 cursor-not-allowed'
                 }`}
-                disabled={!isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email}>
+                disabled={!isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email || !formData.username}>
                 <span className="text-base font-semibold text-white">
                   Sign up →
                 </span>
