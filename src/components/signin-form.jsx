@@ -4,9 +4,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import {
-  IconBrandGithub,
   IconBrandGoogle,
-  IconBrandFacebook
+  IconBrandFacebook,
+  IconEye,
+  IconEyeOff
 } from "@tabler/icons-react";
 import { loginUser, getBaseUrl } from "@/lib/auth";
 import { useGoogleAuth } from "@/hooks/useGoogleAuth";
@@ -178,11 +179,11 @@ export default function LoginForm() {
                   tabIndex={-1}
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  <img
-                    src={!showPassword ? "/notSeePW.svg" : "/seePW.svg"}
-                    alt={showPassword ? "Hide password" : "Show password"}
-                    className="w-5 h-5 opacity-70"
-                  />
+                  {showPassword ? (
+                    <IconEyeOff className="w-5 h-5 opacity-70" />
+                  ) : (
+                    <IconEye className="w-5 h-5 opacity-70" />
+                  )}
                 </button>
               </div>
 
