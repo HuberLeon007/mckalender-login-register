@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -9,6 +9,8 @@ import {
 } from "@tabler/icons-react";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import AccountTypeToggle from "@/components/ui/account-type-toggle";
+import { registerUser, getUserTimezone, handleGoogleRegister } from "@/lib/auth";
+import VerificationForm from "./verification-form";
 import "./input.css";
 
 export default function SignupForm() {
@@ -20,6 +22,8 @@ export default function SignupForm() {
     password: "",
     confirmPassword: "",
     accountType: "personal", // "personal" or "commercial"
+    timezone: "",
+    rolle: "user"
   });
 
   const [passwordValidation, setPasswordValidation] = useState({
@@ -34,6 +38,18 @@ export default function SignupForm() {
   const [showValidation, setShowValidation] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showVerification, setShowVerification] = useState(false);
+  const [verificationUsername, setVerificationUsername] = useState("");
+
+  // Set timezone on component mount
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      timezone: getUserTimezone()
+    }));
+  }, []);
 
   const validatePassword = (password, confirmPassword) => {
     const validation = {
@@ -53,6 +69,7 @@ export default function SignupForm() {
     const { name, value } = e.target;
     const newFormData = { ...formData, [name]: value };
     setFormData(newFormData);
+    setError("");
 
     if (name === 'password' || name === 'confirmPassword') {
       if (name === 'password' && value.length > 0) {
@@ -76,15 +93,69 @@ export default function SignupForm() {
     return Object.values(passwordValidation).every(valid => valid);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isPasswordValid() && formData.firstName && formData.lastName && formData.email && formData.username) {
-      console.log("Signup-Daten:", JSON.stringify(formData, null, 2));
-      // ...hier könnte später ein API-Call kommen
-    } else {
-      console.log("Form validation failed");
+    
+    if (!isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email || !formData.username) {
+      setError("Please fill in all fields correctly.");
+      return;
     }
+
+    setIsLoading(true);
+    setError("");
+
+    const userData = {
+      username: formData.username,
+      password: formData.password,
+      email: formData.email,
+      timezone: formData.timezone,
+      rolle: formData.rolle,
+      company: formData.accountType === "commercial"
+    };
+
+    const result = await registerUser(userData);
+    
+    if (result.success) {
+      if (result.needsVerification) {
+        setVerificationUsername(formData.username);
+        setShowVerification(true);
+      } else {
+        // Registration successful without verification
+        window.location.href = "/signin";
+      }
+    } else {
+      setError(result.error);
+    }
+    
+    setIsLoading(false);
   };
+
+  const handleGoogleAuth = async () => {
+    // Redirect to Google auth endpoint for registration
+    window.location.href = '/auth/google/register';
+  };
+
+  const handleVerificationSuccess = () => {
+    setShowVerification(false);
+    setVerificationUsername("");
+    // Redirect to signin page
+    window.location.href = "/signin";
+  };
+
+  const handleBackToSignup = () => {
+    setShowVerification(false);
+    setVerificationUsername("");
+  };
+
+  if (showVerification) {
+    return (
+      <VerificationForm 
+        username={verificationUsername}
+        onVerificationSuccess={handleVerificationSuccess}
+        onBackToLogin={handleBackToSignup}
+      />
+    );
+  }
   
   return (
     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
@@ -93,13 +164,20 @@ export default function SignupForm() {
         <div className="w-full h-auto flex flex-col">
           {/* Header */}
           <div className="text-center mb-4">
-            <h1 className="text-2xl sm:text-3xl text-white font-bold tracking-tight mb-1 modern-title">
+            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{color: '#111'}}>
               Sign Up
             </h1>
-            <p className="text-sm text-white text-opacity-90 leading-relaxed modern-subtitle">
+            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle" style={{color: '#222'}}>
               Join us today and get started
             </p>
           </div>
+
+          {/* Error Alert */}
+          {error && (
+            <div className="bg-red-500 bg-opacity-80 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">
+              {error}
+            </div>
+          )}
 
           {/* Content Wrapper with Glassmorphism */}
           <div className="content-wrapper rounded-xl p-2 flex-1">
@@ -109,18 +187,18 @@ export default function SignupForm() {
                 <button 
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={() => window.location.href = '/api/auth/google'}>
+                  onClick={handleGoogleAuth}>
                   <IconBrandGoogle className="w-4 h-4" />
-                  <span className="font-medium text-white">
+                  <span className="font-medium text-black">
                     Google
                   </span>
                 </button>
                 <button 
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={() => window.location.href = '/api/auth/facebook'}>
+                  onClick={() => window.location.href = '/auth/facebook'}>
                   <IconBrandFacebook className="w-4 h-4" />
-                  <span className="font-medium text-white">
+                  <span className="font-medium text-black">
                     Facebook
                   </span>
                 </button>
@@ -128,11 +206,11 @@ export default function SignupForm() {
 
               {/* OR Divider */}
               <div className="flex items-center or-divider mb-2">
-                <div className="flex-1 h-px bg-white bg-opacity-30"></div>
-                <span className="text-base text-white text-opacity-80 or-text px-2">
+                <div className="flex-1 h-px bg-black bg-opacity-30"></div>
+                <span className="text-base text-black text-opacity-80 or-text px-2">
                   OR
                 </span>
-                <div className="flex-1 h-px bg-white bg-opacity-30"></div>
+                <div className="flex-1 h-px bg-black bg-opacity-30"></div>
               </div>
 
               {/* Account Type Toggle Switch */}
@@ -144,7 +222,7 @@ export default function SignupForm() {
               {/* Name Fields Row */}
               <div className="flex gap-2 name-row mb-2">
                 <div className="input-group flex-1">
-                  <Label className="block text-base text-white text-opacity-90 input-label">
+                  <Label className="block text-base text-black text-opacity-80 input-label">
                     First Name
                   </Label>
                   <Input 
@@ -157,7 +235,7 @@ export default function SignupForm() {
                   />
                 </div>
                 <div className="input-group flex-1">
-                  <Label className="block text-base text-white text-opacity-90 input-label">
+                  <Label className="block text-base text-black text-opacity-80 input-label">
                     Last Name
                   </Label>
                   <Input 
@@ -173,7 +251,7 @@ export default function SignupForm() {
 
               {/* Username Input */}
               <div className="input-group mb-2">
-                <Label className="block text-base text-white text-opacity-90 input-label">
+                <Label className="block text-base text-black text-opacity-80 input-label">
                   Username
                 </Label>
                 <Input 
@@ -188,7 +266,7 @@ export default function SignupForm() {
 
               {/* Email Input */}
               <div className="input-group mb-2">
-                <Label className="block text-base text-white text-opacity-90 input-label">
+                <Label className="block text-base text-black text-opacity-80 input-label">
                   Email Address
                 </Label>
                 <Input 
@@ -203,7 +281,7 @@ export default function SignupForm() {
 
               {/* Password Input */}
               <div className="input-group mb-2 relative">
-                <Label className="block text-base text-white text-opacity-90 input-label">
+                <Label className="block text-base text-black text-opacity-80 input-label">
                   Password
                 </Label>
                 <Input 
@@ -231,7 +309,7 @@ export default function SignupForm() {
 
               {/* Confirm Password Input */}
               <div className="input-group mb-2 relative">
-                <Label className="block text-base text-white text-opacity-90 input-label">
+                <Label className="block text-base text-black text-opacity-80 input-label">
                   Confirm Password
                 </Label>
                 <Input 
@@ -292,14 +370,10 @@ export default function SignupForm() {
               {/* Sign Up Button */}
               <button 
                 type="submit"
-                className={`login-btn w-full rounded-lg py-2 mb-2 ${
-                  isPasswordValid() && formData.firstName && formData.lastName && formData.email && formData.username 
-                    ? '' 
-                    : 'opacity-50 cursor-not-allowed'
-                }`}
-                disabled={!isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email || !formData.username}>
-                <span className="text-base font-semibold text-white">
-                  Sign up →
+                disabled={isLoading || !isPasswordValid() || !formData.firstName || !formData.lastName || !formData.email || !formData.username}
+                className="login-btn w-full rounded-lg py-2 mb-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                <span className="text-base font-semibold text-black">
+                  {isLoading ? "Creating Account..." : "Sign up →"}
                 </span>
               </button>
             </form>
@@ -307,12 +381,12 @@ export default function SignupForm() {
 
           {/* Login Link */}
           <div className="text-center create-account-container mt-2">
-            <span className="text-base text-white text-opacity-80">
+            <span className="text-base text-black text-opacity-70">
               Already have an account?{" "}
             </span>
             <a
-              href="/signin"
-              className="text-base text-white font-semibold hover:text-white transition-colors">
+              href="/auth/signin"
+              className="text-base text-black font-semibold hover:text-opacity-80 transition-colors">
               Sign In
             </a>
           </div>

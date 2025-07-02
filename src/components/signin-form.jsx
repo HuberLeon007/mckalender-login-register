@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -8,15 +8,84 @@ import {
   IconBrandGoogle,
   IconBrandFacebook
 } from "@tabler/icons-react";
+import { loginUser, getBaseUrl } from "@/lib/auth";
+import { useGoogleAuth } from "@/hooks/useGoogleAuth";
+import VerificationForm from "./verification-form";
 import "./input.css";
 
 export default function LoginForm() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setError("Email and password combination is incorrect.");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
+  const [verificationUsername, setVerificationUsername] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    setError("");
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.username || !formData.password) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    setIsLoading(true);
+    setError("");
+
+    const result = await loginUser(formData.username, formData.password);
+    
+    if (result.success) {
+      // Successful login
+      window.location.href = `${getBaseUrl()}/web/cookies`;
+    } else if (result.needsVerification) {
+      // Email verification required
+      setVerificationUsername(formData.username);
+      setShowVerification(true);
+    } else {
+      setError(result.error);
+    }
+    
+    setIsLoading(false);
+  };
+
+  const handleGoogleAuth = async () => {
+    // This will be handled by Google OAuth integration
+    // For now, redirect to Google auth endpoint
+    window.location.href = '/auth/google/login';
+  };
+
+  const handleVerificationSuccess = () => {
+    setShowVerification(false);
+    setVerificationUsername("");
+    setFormData({ username: "", password: "" });
+  };
+
+  const handleBackToLogin = () => {
+    setShowVerification(false);
+    setVerificationUsername("");
+  };
+
+  if (showVerification) {
+    return (
+      <VerificationForm 
+        username={verificationUsername}
+        onVerificationSuccess={handleVerificationSuccess}
+        onBackToLogin={handleBackToLogin}
+      />
+    );
+  }
 
   return (
     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
@@ -48,7 +117,7 @@ export default function LoginForm() {
                 <button 
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={() => window.location.href = '/api/auth/google'}>
+                  onClick={handleGoogleAuth}>
                   <IconBrandGoogle className="w-4 h-4" />
                   <span className="font-medium text-black">
                     Google
@@ -57,7 +126,7 @@ export default function LoginForm() {
                 <button 
                   type="button"
                   className="social-btn flex items-center justify-center gap-2 rounded-lg text-base py-2"
-                  onClick={() => window.location.href = '/api/auth/facebook'}>
+                  onClick={() => window.location.href = '/auth/facebook'}>
                   <IconBrandFacebook className="w-4 h-4" />
                   <span className="font-medium text-black">
                     Facebook
@@ -77,11 +146,14 @@ export default function LoginForm() {
               {/* Email Input */}
               <div className="input-group mb-2">
                 <Label className="block text-base text-black text-opacity-80 input-label">
-                  Email Address
+                  Username or Email
                 </Label>
                 <Input 
-                  type="email" 
-                  placeholder="your@email.com"
+                  type="text" 
+                  name="username"
+                  placeholder="your@email.com or username"
+                  value={formData.username}
+                  onChange={handleInputChange}
                   className="aceternity-input w-full rounded-lg text-base"
                 />
               </div>
@@ -93,7 +165,10 @@ export default function LoginForm() {
                 </Label>
                 <Input 
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleInputChange}
                   className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
                 <button
@@ -124,9 +199,10 @@ export default function LoginForm() {
               {/* Sign In Button */}
               <button 
                 type="submit"
-                className="login-btn w-full rounded-lg py-2">
+                disabled={isLoading}
+                className="login-btn w-full rounded-lg py-2 disabled:opacity-50">
                 <span className="text-base font-semibold text-black">
-                  Sign in →
+                  {isLoading ? "Signing in..." : "Sign in →"}
                 </span>
               </button>
             </form>
@@ -138,7 +214,7 @@ export default function LoginForm() {
               Don't have an account?{" "}
             </span>
             <a
-              href="/signup"
+              href="/auth/signup"
               className="text-base text-black font-semibold">
               Create New Account
             </a>
