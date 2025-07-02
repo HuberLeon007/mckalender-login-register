@@ -32,6 +32,8 @@ export default function SignupForm() {
   });
 
   const [showValidation, setShowValidation] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validatePassword = (password, confirmPassword) => {
     const validation = {
@@ -205,13 +207,26 @@ export default function SignupForm() {
                   Password
                 </Label>
                 <Input 
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="••••••••"
                   className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-8 flex items-center justify-center"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  <img
+                    src={!showPassword ? "/notSeePW.svg" : "/seePW.svg"}
+                    alt={showPassword ? "Hide password" : "Show password"}
+                    className="w-5 h-5 opacity-70"
+                  />
+                </button>
               </div>
 
               {/* Confirm Password Input */}
@@ -220,13 +235,26 @@ export default function SignupForm() {
                   Confirm Password
                 </Label>
                 <Input 
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="••••••••"
                   className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-8 flex items-center justify-center"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  tabIndex={-1}
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  <img
+                    src={!showConfirmPassword ? "/notSeePW.svg" : "/seePW.svg"}
+                    alt={showConfirmPassword ? "Hide password" : "Show password"}
+                    className="w-5 h-5 opacity-70"
+                  />
+                </button>
               </div>
 
               {/* Password Validation Alerts */}

@@ -12,6 +12,7 @@ import "./input.css";
 
 export default function LoginForm() {
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("Email and password combination is incorrect.");
@@ -91,10 +92,23 @@ export default function LoginForm() {
                   Password
                 </Label>
                 <Input 
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="aceternity-input w-full rounded-lg text-base pr-10"
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-8 flex items-center justify-center"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  <img
+                    src={!showPassword ? "/notSeePW.svg" : "/seePW.svg"}
+                    alt={showPassword ? "Hide password" : "Show password"}
+                    className="w-5 h-5 opacity-70"
+                  />
+                </button>
               </div>
 
               {/* Forgot Password */}

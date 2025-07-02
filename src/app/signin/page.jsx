@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import LoginForm from "@/components/login-form";
+import LoginForm from "@/components/signin-form";
 import "./index.css";
 import "./mobile.css";
 
