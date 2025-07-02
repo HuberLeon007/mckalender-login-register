@@ -105,6 +105,8 @@ export default function SignupForm() {
     setError("");
 
     const userData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
       username: formData.username,
       password: formData.password,
       email: formData.email,
