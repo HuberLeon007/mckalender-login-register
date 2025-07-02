@@ -17,7 +17,7 @@ export const BackgroundGradientAnimation = ({
   className,
   interactive = true,
   containerClassName,
-  height = "100vh"
+  height = "150vh"
 }) => {
   const interactiveRef = useRef(null);
 
@@ -70,7 +70,7 @@ export const BackgroundGradientAnimation = ({
         `relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]`,
         containerClassName
       )}
-      style={{ height, width: "100vw" }}>
+      style={{ height, width: "100vw", minHeight: "100vh" }}>
       <svg className="hidden">
         <defs>
           <filter id="blurMe">

@@ -15,16 +15,17 @@ export default function Register() {
 
   return (
     <div className="relative w-full min-h-screen bg-black">
-      {/* Background Animation Container (einmal, mit extra Höhe) */}
-      <div className="absolute inset-0 w-full min-h-screen pointer-events-none">
+      {/* Background Animation Container (wächst mit dem Inhalt) */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none" style={{ minHeight: '100vh' }}>
         {showAnimation ? (
-          <BackgroundGradientAnimation height="calc(100vh + 10rem)" />
+          <BackgroundGradientAnimation height="100%" />
         ) : (
           <div
-            className="w-full h-full"
+            className="w-full h-full absolute inset-0"
             style={{
               background:
                 "linear-gradient(40deg, rgb(15,23,42), rgb(30,41,59))",
+              minHeight: '100vh'
             }}
           />
         )}
