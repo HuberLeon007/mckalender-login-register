@@ -40,18 +40,16 @@
     margin: 0.5rem 0.375rem;
     padding: 0.5rem 0.375rem;
   }
-  
+
   .modern-title {
     font-size: 1.5rem !important;
     padding: 4px;
   }
-  
+
   .modern-subtitle {
     font-size: 0.75rem !important;
   }
 }
-
-
 
 /* Title Styling */
 .modern-title {
@@ -82,8 +80,6 @@
   padding: 0.5rem;
 }
 
-
-
 /* Social Buttons */
 .social-buttons-container {
   margin: 0 0 0.375rem 0;
@@ -101,8 +97,6 @@
   font-size: 0.75rem;
 }
 
-
-
 .social-btn:last-child {
   margin-bottom: 0;
 }
@@ -115,7 +109,7 @@
 
 .or-text {
   margin: 0;
-  padding: 0 1rem; 
+  padding: 0 1rem;
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   font-size: 0.75rem;
@@ -127,7 +121,8 @@
   padding: 0;
 }
 
-.input-label {
+.input-label,
+.toggle-title {
   margin: 0 0 0.15rem 0;
   padding: 0;
   color: rgba(0, 0, 0, 0.8) !important;
@@ -221,8 +216,6 @@
   font-size: 0.75rem;
 }
 
-
-
 /* Create Account / Sign In Container */
 .create-account-container {
   margin: 0;
@@ -243,8 +236,6 @@
   font-size: 0.75rem;
 }
 
-
-
 /* Forgot Password */
 .remember-forgot-container {
   margin: 0 0 1rem 0;
@@ -257,8 +248,6 @@
   text-decoration: none;
   font-size: 0.65rem;
 }
-
-
 
 /* Password Validation Styles */
 .password-validation {
@@ -407,21 +396,19 @@
   font-weight: 700;
 }
 
-
-
 /* Mobile Responsive */
 @media (max-width: 480px) {
   .toggle-track {
     height: 36px;
     border-radius: 18px;
   }
-  
+
   .toggle-thumb {
     height: 28px;
     border-radius: 14px;
     top: 4px;
   }
-  
+
   .toggle-label {
     font-size: 0.7rem;
   }
@@ -432,19 +419,21 @@
     height: 34px;
     border-radius: 17px;
   }
-  
+
   .toggle-thumb {
     height: 26px;
     border-radius: 13px;
   }
-  
+
   .toggle-label {
     font-size: 0.65rem;
   }
 }
 
 /* Button Hover Effects */
-.social-btn:hover, .login-btn:hover, button:hover {
+.social-btn:hover,
+.login-btn:hover,
+button:hover {
   background: #a3c0ff;
   color: #fff;
   border-color: #2563eb;
