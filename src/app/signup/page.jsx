@@ -2,15 +2,13 @@
 import React from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import SignupForm from "@/components/ui/signup-form";
-import "./index.css";
-import "./mobile.css";
 
 export default function Register() {
   return (
     <div className="relative w-full min-h-screen bg-black">
       {/* Background Animation Container (wie auf signin-Seite) */}
       <div className="absolute inset-0 w-full min-h-screen pointer-events-none">
-        <BackgroundGradientAnimation height="calc(100vh + 10rem)" />
+        <BackgroundGradientAnimation height="calc(100vh + 20rem)" />
       </div>
 
       {/* Register Form Container */}

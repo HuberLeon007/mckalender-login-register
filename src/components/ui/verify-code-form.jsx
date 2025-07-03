@@ -54,7 +54,17 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
 
   return (
     <div className="verify-form-container">
-      <div className="rounded-2xl morphgism-card p-8 sm:p-12 flex flex-col shadow-xl bg-white">
+      <div className="rounded-2xl morphgism-card p-8 sm:p-12 flex flex-col shadow-xl bg-white" style={{ position: 'relative' }}>
+        <button
+          type="button"
+          aria-label="Back to Signup"
+          onClick={() => router.push('/signup')}
+          style={{ position: 'absolute', top: 16, left: 16, background: 'none', border: 'none', cursor: 'pointer', zIndex: 20 }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
         <div className="w-full h-auto flex-1 flex flex-col">
           <div className="text-center mb-4">
             <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{ color: "#111" }}>

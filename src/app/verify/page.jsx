@@ -3,8 +3,6 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import VerifyCodeForm from "@/components/ui/verify-code-form";
-import "../signup/index.css";
-import "../signup/mobile.css";
 
 export default function VerificationForm() {
   const searchParams = useSearchParams();

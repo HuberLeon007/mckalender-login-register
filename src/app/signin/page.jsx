@@ -3,8 +3,6 @@
 import React from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import LoginForm from "@/components/ui/signin-form";
-import "./index.css";
-import "./mobile.css";
 
 export default function Login() {
   return (
