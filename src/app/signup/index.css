@@ -258,7 +258,7 @@ button:hover {
   font-size: 0.8rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .login-container {
     padding: 0.25rem;
     min-height: 100vh;
