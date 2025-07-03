@@ -11,11 +11,8 @@ export default function VerificationForm() {
   const username = searchParams.get("username") || "";
   return (
     <div className="relative w-full min-h-screen bg-black">
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ minHeight: "100vh" }}
-      >
-        <BackgroundGradientAnimation height="100%" />
+      <div className="absolute inset-0 w-full min-h-screen pointer-events-none">
+        <BackgroundGradientAnimation height="calc(100vh + 10rem)" />
       </div>
       <div className="relative z-10 w-full flex items-center justify-center py-6 min-h-screen">
         <VerifyCodeForm

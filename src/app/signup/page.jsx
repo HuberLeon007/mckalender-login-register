@@ -8,12 +8,9 @@ import "./mobile.css";
 export default function Register() {
   return (
     <div className="relative w-full min-h-screen bg-black">
-      {/* Background Animation Container (immer angezeigt) */}
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ minHeight: "100vh" }}
-      >
-        <BackgroundGradientAnimation height="100%" />
+      {/* Background Animation Container (wie auf signin-Seite) */}
+      <div className="absolute inset-0 w-full min-h-screen pointer-events-none">
+        <BackgroundGradientAnimation height="calc(100vh + 10rem)" />
       </div>
 
       {/* Register Form Container */}
