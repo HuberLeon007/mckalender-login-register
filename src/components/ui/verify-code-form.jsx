@@ -75,12 +75,12 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
             </p>
           </div>
           {error && (
-            <div className="bg-red-400 bg-opacity-90 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">
+            <div className="bg-red-100 border border-red-300 text-red-700 text-sm rounded-lg px-3 py-2 mb-2 text-center">
               {error}
             </div>
           )}
           {message && (
-            <div className="bg-green-500 bg-opacity-80 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">{message}</div>
+            <div className="bg-blue-100 border border-blue-300 text-blue-700 text-sm rounded-lg px-3 py-2 mb-2 text-center">{message}</div>
           )}
           <div className="content-wrapper rounded-xl p-2 flex-1 overflow-y-visible">
             <form onSubmit={handleSubmit} className="flex flex-col min-h-0">

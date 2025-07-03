@@ -153,7 +153,7 @@ export default function SignupForm() {
 
           {/* Error Alert */}
           {error && (
-            <div className="bg-red-400 bg-opacity-90 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">
+            <div className="bg-red-100 border border-red-300 text-red-700 text-sm rounded-lg px-3 py-2 mb-2 text-center">
               {error}
             </div>
           )}
