@@ -4,7 +4,6 @@ import "../components/ui/css/bga.css";
 import "../components/ui/css/verify-code-form.css";
 import "../components/ui/css/input.css";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
