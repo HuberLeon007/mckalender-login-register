@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import SignupForm from "@/components/signup-form";
+import SignupForm from "@/components/ui/signup-form";
 import "./index.css";
 import "./mobile.css";
 

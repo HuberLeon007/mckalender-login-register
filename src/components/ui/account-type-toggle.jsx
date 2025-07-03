@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import "./account-type-toggle.css";
+import "./css/account-type-toggle.css";
 
 export default function AccountTypeToggle({ value, onChange }) {
   const handleToggle = () => {

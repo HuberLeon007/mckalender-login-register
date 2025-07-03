@@ -1,20 +1,17 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { IconBrandGoogle, IconBrandFacebook, IconEye, IconEyeOff } from "@tabler/icons-react";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import AccountTypeToggle from "@/components/ui/account-type-toggle";
-import {
-  registerUser,
-  getUserTimezone,
-  handleGoogleRegister,
-} from "@/lib/auth";
-import VerificationForm from "./verification-form";
-import "./input.css";
+import { getUserTimezone } from "@/lib/auth";
+import "./css/input.css";
 
 export default function SignupForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -41,8 +38,6 @@ export default function SignupForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [showVerification, setShowVerification] = useState(false);
-  const [verificationUsername, setVerificationUsername] = useState("");
 
   // Set timezone on component mount
   useEffect(() => {
@@ -114,7 +109,8 @@ export default function SignupForm() {
     setIsLoading(true);
     setError("");
 
-    const userData = {
+    // Simuliere Registrierung lokal
+    console.log("Register called:", {
       firstName: formData.firstName,
       lastName: formData.lastName,
       username: formData.username,
@@ -123,22 +119,9 @@ export default function SignupForm() {
       timezone: formData.timezone,
       rolle: formData.rolle,
       company: formData.accountType === "commercial",
-    };
+    });
 
-    const result = await registerUser(userData);
-
-    if (result.success) {
-      if (result.needsVerification) {
-        setVerificationUsername(formData.username);
-        setShowVerification(true);
-      } else {
-        // Registration successful without verification
-        window.location.href = "/signin";
-      }
-    } else {
-      setError(result.error);
-    }
-
+    router.push(`/verify?username=${encodeURIComponent(formData.username)}`);
     setIsLoading(false);
   };
 
@@ -146,28 +129,6 @@ export default function SignupForm() {
     // Redirect to Google auth endpoint for registration
     window.location.href = "/auth/google/register";
   };
-
-  const handleVerificationSuccess = () => {
-    setShowVerification(false);
-    setVerificationUsername("");
-    // Redirect to signin page
-    window.location.href = "/signin";
-  };
-
-  const handleBackToSignup = () => {
-    setShowVerification(false);
-    setVerificationUsername("");
-  };
-
-  if (showVerification) {
-    return (
-      <VerificationForm
-        username={verificationUsername}
-        onVerificationSuccess={handleVerificationSuccess}
-        onBackToLogin={handleBackToSignup}
-      />
-    );
-  }
 
   return (
     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
@@ -192,7 +153,7 @@ export default function SignupForm() {
 
           {/* Error Alert */}
           {error && (
-            <div className="bg-red-500 bg-opacity-80 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">
+            <div className="bg-red-400 bg-opacity-90 text-white text-sm rounded-lg px-3 py-2 mb-2 text-center">
               {error}
             </div>
           )}

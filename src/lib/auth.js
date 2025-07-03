@@ -57,8 +57,8 @@ export async function registerUser(userData) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstname: userData.firstname,
-        lastname: userData.lastname,
+        firstname: userData.firstName || userData.firstname,
+        lastname: userData.lastName || userData.lastname,
         username: userData.username,
         password: userData.password,
         email: userData.email,
@@ -68,7 +68,15 @@ export async function registerUser(userData) {
       }),
     });
 
-    const data = await response.json();
+    // Check if response is JSON before parsing
+    const contentType = response.headers.get("content-type");
+    let data = {};
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      throw new Error(text);
+    }
 
     if (response.ok) {
       return {
@@ -83,8 +91,12 @@ export async function registerUser(userData) {
       };
     }
   } catch (error) {
+    // Improve error message for HTML response
+    if (typeof error.message === "string" && error.message.startsWith("<!DOCTYPE")) {
+      return { success: false, error: "Server error: Endpoint not found (404) or server misconfiguration." };
+    }
     console.error("Registration error:", error);
-    return { success: false, error: "Error during registration" };
+    return { success: false, error: error.message || "Error during registration" };
   }
 }
 
