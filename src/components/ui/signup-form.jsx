@@ -410,12 +410,12 @@ const ValidationItem = ({ isValid, text }) => {
       }`}
     >
       {isValid ? (
-        <CheckCircle className="w-4 h-4 text-green-400" />
+        <CheckCircle className="w-4 h-4 text-blue-600" />
       ) : (
-        <AlertTriangle className="w-4 h-4 text-red-400" />
+        <AlertTriangle className="w-4 h-4 text-red-600" />
       )}
       <span
-        className={`text-sm ${isValid ? "text-green-300" : "text-red-300"}`}
+        className={`text-sm ${isValid ? "text-blue-700" : "text-red-700"}`}
       >
         {text}
       </span>

@@ -273,8 +273,24 @@
   opacity: 1;
 }
 
+.validation-item.valid .text-blue-700 {
+  color: #1d4ed8 !important;
+}
+
+.validation-item.valid .text-blue-600 {
+  color: #2563eb !important;
+}
+
 .validation-item.invalid {
   opacity: 0.8;
+}
+
+.validation-item.invalid .text-red-700 {
+  color: #b91c1c !important;
+}
+
+.validation-item.invalid .text-red-600 {
+  color: #dc2626 !important;
 }
 
 .validation-item:last-child {

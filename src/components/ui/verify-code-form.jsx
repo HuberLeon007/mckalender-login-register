@@ -50,16 +50,14 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
     setIsLoading(false);
   };
 
-  const showResentBanner = message && message.toLowerCase().includes('resent') && !error;
-
   return (
     <div className="verify-form-container">
-      <div className="rounded-2xl morphgism-card p-8 sm:p-12 flex flex-col shadow-xl bg-white" style={{ position: 'relative' }}>
+      <div className="rounded-2xl morphgism-card p-8 sm:p-12 flex flex-col shadow-xl bg-white verify-card">
         <button
           type="button"
           aria-label="Back to Signup"
           onClick={() => router.push('/signup')}
-          style={{ position: 'absolute', top: 16, left: 16, background: 'none', border: 'none', cursor: 'pointer', zIndex: 20 }}
+          className="back-button"
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
@@ -67,10 +65,10 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
         </button>
         <div className="w-full h-auto flex-1 flex flex-col">
           <div className="text-center mb-4">
-            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title" style={{ color: "#111" }}>
+            <h1 className="text-2xl sm:text-3xl text-black font-bold tracking-tight mb-1 modern-title verify-title">
               Verify Your Email
             </h1>
-            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle" style={{ color: "#222" }}>
+            <p className="text-sm text-black text-opacity-75 leading-relaxed modern-subtitle verify-subtitle">
               Enter the 6-digit code sent to your email
             </p>
           </div>
@@ -128,8 +126,7 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
                 <button
                   type="button"
                   onClick={handleResendCode}
-                  className="login-btn px-4 py-2 rounded-md font-medium text-black shadow-none hover:text-black focus:text-black"
-                  style={{ minWidth: 90, minHeight: 34, marginBottom: '0.5rem', fontSize: '0.8rem' }}
+                  className="login-btn px-4 py-2 rounded-md font-medium text-black shadow-none hover:text-black focus:text-black resend-button"
                 >
                   {isLoading ? "Resending..." : "Resend"}
                 </button>

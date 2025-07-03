@@ -5,6 +5,28 @@
   margin: 0 auto;
 }
 
+.verify-card {
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  top: 30px;
+  left: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.verify-title {
+  color: #111 !important;
+}
+
+.verify-subtitle {
+  color: #222 !important;
+}
+
 .verify-code-inputs {
   display: flex;
   gap: 1rem;
