@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import { verifyEmail, resendVerificationCode } from "@/lib/auth";
 import "./css/verify-code-form.css";
 
-export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMock, resendVerificationCodeMock }) {
+export default function VerifyCodeForm({ username, onBackToLogin }) {
   const router = useRouter();
   const [verificationCode, setVerificationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -23,8 +24,8 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
     }
     setIsLoading(true);
     setError("");
-    const verify = verifyEmailMock || (async () => ({ success: true }));
-    const result = await verify(username, verificationCode);
+    
+    const result = await verifyEmail(username, verificationCode);
     if (result.success) {
       setMessage("Email verified successfully! You can now login.");
       setTimeout(() => {
@@ -40,8 +41,8 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
     setIsLoading(true);
     setError("");
     setMessage("");
-    const resend = resendVerificationCodeMock || (async () => ({ success: true }));
-    const result = await resend(username);
+    
+    const result = await resendVerificationCode(username);
     if (result.success) {
       setMessage("Verification code resent! Please check your email.");
     } else {
@@ -107,6 +108,29 @@ export default function VerifyCodeForm({ username, onBackToLogin, verifyEmailMoc
                       handleCodeChange(newValue.padEnd(6, ""));
                       if (val && idx < 5) {
                         e.target.parentNode.children[idx + 1]?.focus();
+                      }
+                    }}
+                    onPaste={e => {
+                      e.preventDefault();
+                      const pasteData = e.clipboardData.getData('text').replace(/\D/g, '');
+                      if (pasteData.length >= 6) {
+                        handleCodeChange(pasteData.slice(0, 6));
+                        // Focus the last input field
+                        setTimeout(() => {
+                          e.target.parentNode.children[5]?.focus();
+                        }, 0);
+                      } else if (pasteData.length > 0) {
+                        // Fill from current position
+                        let newCode = verificationCode.split("");
+                        for (let i = 0; i < pasteData.length && (idx + i) < 6; i++) {
+                          newCode[idx + i] = pasteData[i];
+                        }
+                        handleCodeChange(newCode.join(""));
+                        // Focus next appropriate field
+                        const nextIdx = Math.min(idx + pasteData.length, 5);
+                        setTimeout(() => {
+                          e.target.parentNode.children[nextIdx]?.focus();
+                        }, 0);
                       }
                     }}
                     onKeyDown={e => {

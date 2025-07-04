@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "../components/ui/css/bga.css";
 import "../components/ui/css/verify-code-form.css";
@@ -22,6 +23,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script 
+          src="https://accounts.google.com/gsi/client" 
+          strategy="beforeInteractive"
+        />
+        <Script id="config-script" strategy="beforeInteractive">
+          {`
+            window.CONFIG = {
+              BASE_URL: "${process.env.NEXT_PUBLIC_BASE_URL || 'https://localhost:8443'}"
+            };
+          `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

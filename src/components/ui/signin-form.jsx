@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -11,10 +12,10 @@ import {
 } from "@tabler/icons-react";
 import { loginUser, getBaseUrl } from "@/lib/auth";
 import { useGoogleAuth } from "@/hooks/useGoogleAuth";
-import VerificationForm from "../../app/verify/page";
 import "./css/input.css";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -22,8 +23,6 @@ export default function LoginForm() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showVerification, setShowVerification] = useState(false);
-  const [verificationUsername, setVerificationUsername] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,9 +50,8 @@ export default function LoginForm() {
       // Successful login
       window.location.href = `${getBaseUrl()}/web/cookies`;
     } else if (result.needsVerification) {
-      // Email verification required
-      setVerificationUsername(formData.username);
-      setShowVerification(true);
+      // Email verification required - redirect to verify page with username
+      router.push(`/verify?username=${encodeURIComponent(formData.username)}`);
     } else {
       setError(result.error);
     }
@@ -61,30 +59,21 @@ export default function LoginForm() {
     setIsLoading(false);
   };
 
+  const { signInWithGoogle, isInitialized: isGoogleInitialized } = useGoogleAuth();
+
   const handleGoogleAuth = async () => {
-    window.location.href = "/auth/google/login";
+    try {
+      const result = await signInWithGoogle();
+      if (result.success) {
+        window.location.href = `${getBaseUrl()}/web/cookies`;
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+      setError("Google sign-in failed. Please try again.");
+    }
   };
-
-  const handleVerificationSuccess = () => {
-    setShowVerification(false);
-    setVerificationUsername("");
-    setFormData({ username: "", password: "" });
-  };
-
-  const handleBackToLogin = () => {
-    setShowVerification(false);
-    setVerificationUsername("");
-  };
-
-  if (showVerification) {
-    return (
-      <VerificationForm
-        username={verificationUsername}
-        onVerificationSuccess={handleVerificationSuccess}
-        onBackToLogin={handleBackToLogin}
-      />
-    );
-  }
 
   return (
     <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">

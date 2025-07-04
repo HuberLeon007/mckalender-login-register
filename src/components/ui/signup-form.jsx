@@ -7,11 +7,13 @@ import { cn } from "@/lib/utils";
 import { IconBrandGoogle, IconBrandFacebook, IconEye, IconEyeOff } from "@tabler/icons-react";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import AccountTypeToggle from "@/components/ui/account-type-toggle";
-import { getUserTimezone } from "@/lib/auth";
+import { getUserTimezone, registerUser, getBaseUrl } from "@/lib/auth";
+import { useGoogleAuth } from "@/hooks/useGoogleAuth";
 import "./css/input.css";
 
 export default function SignupForm() {
   const router = useRouter();
+  const { registerWithGoogle, isInitialized: isGoogleInitialized } = useGoogleAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -109,25 +111,56 @@ export default function SignupForm() {
     setIsLoading(true);
     setError("");
 
-    // Simuliere Registrierung lokal
-    console.log("Register called:", {
+    const userData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       username: formData.username,
       password: formData.password,
       email: formData.email,
       timezone: formData.timezone,
-      rolle: formData.rolle,
+      rolle: "user", // Always set to "user" as requested
       company: formData.accountType === "commercial",
-    });
+    };
 
-    router.push(`/verify?username=${encodeURIComponent(formData.username)}`);
+    console.log("Register called:", userData);
+
+    const result = await registerUser(userData);
+    
+    if (result.success) {
+      if (result.needsVerification) {
+        // Redirect to verification page
+        router.push(`/verify?username=${encodeURIComponent(formData.username)}`);
+      } else {
+        // Direct login success
+        router.push("/signin");
+      }
+    } else {
+      setError(result.error);
+    }
+
     setIsLoading(false);
   };
 
   const handleGoogleAuth = async () => {
-    // Redirect to Google auth endpoint for registration
-    window.location.href = "/auth/google/register";
+    try {
+      const additionalData = {
+        timezone: formData.timezone,
+        rolle: "user", // Always set to "user" as requested
+        company: formData.accountType === "commercial",
+      };
+      
+      const result = await registerWithGoogle(additionalData);
+      
+      if (result.success) {
+        // Redirect to main application on successful registration
+        window.location.href = `${getBaseUrl()}/web/cookies`;
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      console.error("Google registration error:", error);
+      setError("Google registration failed. Please try again.");
+    }
   };
 
   return (

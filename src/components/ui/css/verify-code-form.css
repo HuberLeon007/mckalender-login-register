@@ -108,6 +108,54 @@
   align-items: center;
 }
 
+/* 4K and ultra-wide screens */
+@media (min-width: 2560px) {
+  .verify-form-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .verify-code-inputs {
+    gap: 0.8rem;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto 2.2rem auto;
+    flex-wrap: nowrap;
+  }
+  
+  .verify-code-inputs input {
+    width: 1.8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    max-width: 50px;
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+  
+  .content-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .morphgism-card {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) and (max-width: 2559px) {
+  .verify-form-container {
+    max-width: 550px;
+  }
+  
+  .verify-code-inputs {
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto 2.2rem auto;
+  }
+}
+
 @media (max-width: 600px) {
   .verify-form-container {
     max-width: 98vw;
